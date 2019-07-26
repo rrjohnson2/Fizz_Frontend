@@ -6,16 +6,15 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
-import { LandingComponent } from './landing/landing.component';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer.component';
+import { SignupComponent } from './creative_tim/signup/signup.component';
+import { LandingComponent } from './creative_tim/landing/landing.component';
+import { ProfileComponent } from './creative_tim/profile/profile.component';
+import { NavbarComponent } from './creative_tim/shared/navbar/navbar.component';
+import { FooterComponent } from './creative_tim/shared/footer/footer.component';
 
-import { HomeModule } from './home/home.module';
+import { HomeModule } from './creative_tim/home/home.module';
 import { LoginComponent } from './login/login.component';
-import { LayoutComponent } from './layout/layout.component';
+import { AuthGuard } from './shared/auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { LayoutComponent } from './layout/layout.component';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +34,7 @@ import { LayoutComponent } from './layout/layout.component';
     AppRoutingModule,
     HomeModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
