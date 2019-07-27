@@ -1,30 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { SignupComponent } from './creative_tim/signup/signup.component';
+// import { SignupComponent } from './creative_tim/signup/signup.component';
 import { LandingComponent } from './creative_tim/landing/landing.component';
 import { ProfileComponent } from './creative_tim/profile/profile.component';
 import { NavbarComponent } from './creative_tim/shared/navbar/navbar.component';
 import { FooterComponent } from './creative_tim/shared/footer/footer.component';
 
 import { HomeModule } from './creative_tim/home/home.module';
-import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
+import { SignupComponent } from './creative_tim/signup/signup.component';
+import { LoginComponent } from './creative_tim/login/login.component';
+import { LoginModule } from './login/login.module';
+import { GlobalService } from './services/global.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     LandingComponent,
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,10 @@ import { AuthGuard } from './shared/auth.guard';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
