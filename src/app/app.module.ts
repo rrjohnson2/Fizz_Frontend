@@ -16,10 +16,8 @@ import { HomeModule } from './creative_tim/home/home.module';
 import { AuthGuard } from './shared/auth.guard';
 import { SignupComponent } from './creative_tim/signup/signup.component';
 import { LoginComponent } from './creative_tim/login/login.component';
-import { LoginModule } from './login/login.module';
 import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
-
 @NgModule({
   declarations: [
     AppComponent,
