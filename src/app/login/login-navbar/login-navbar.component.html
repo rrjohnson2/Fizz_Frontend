@@ -1,5 +1,25 @@
 <nav class=" login_navbar navbar navbar-expand-lg navbar-dark bg-info mt-4">
   <div class="container">
-    <a class="navbar-brand" href="javascript:void(0)">Fizz</a>
+    <div class="logo_header col-6">
+        <a class="navbar-brand" href="javascript:void(0)">Fizz</a>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)=Login() class=" row justify-content-center col-6 form-body" >
+        <div class=" col-4 form_input">
+            <div class=" form-group ">
+                <input formControlName="username" type="text" placeholder="Username" class="form-control form-control-success" />
+            </div>
+        </div>
+      <div class=" col-4 form_input">
+              <div class="form-group ">
+                  <input formControlName="password" type="password" placeholder="Password" class="form-control form-control-success" />
+              </div>
+      </div>
+      <div class="col-4 text-center">
+              <button [disabled]="!loginForm.valid"  placement="top" ngbTooltip="Sign Up" 
+                      class="btn btn-primary btn-icon btn-round" type="submit">
+                     Login
+              </button>
+      </div>
+    </form>
   </div>
 </nav>

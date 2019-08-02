@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 import { CreateMemberTicket } from 'src/app/interfaces/create-member-ticket';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent implements OnInit {
     private create_member: CreateMemberTicket;
     public signupform: FormGroup;
 
-  constructor(private globalservice: GlobalService) { }
+  constructor(private globalservice: GlobalService,private router:Router) { }
 
   ngOnInit() {
     this.createForm();
@@ -54,8 +55,14 @@ export class SignupComponent implements OnInit {
     this.setUpTicket();
     this.globalservice.signUp(this.create_member).subscribe(
       data =>{
-          console.log(data);
-      }
+         this.globalservice.populateMember(data);
+         this.router.navigate(['']);
+      },
+      
+    error =>
+    {
+      console.log(error.error)
+    }
     );
   }
   private setUpTicket()
