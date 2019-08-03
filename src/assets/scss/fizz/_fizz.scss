@@ -1,0 +1,20 @@
+
+.layout{
+     background-color: $gray-100;
+}
+.fizz_navbar{
+    margin-bottom: 2.5vh !important;
+    margin-top: 0 !important;
+}
+
+.fizz_column{
+    // border-right: solid .25vh $gray-300;
+    min-height: 90vh;
+
+}
+.logo_header, .login_form, .signup_input, .login_root {
+    padding-left:0 !important; 
+}
+.logo_title{
+    font-size: 2.5rem !important;
+}

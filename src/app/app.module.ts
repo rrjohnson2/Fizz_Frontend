@@ -18,6 +18,7 @@ import { SignupComponent } from './creative_tim/signup/signup.component';
 import { LoginComponent } from './creative_tim/login/login.component';
 import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutNavbarComponent } from './layout-navbar/layout-navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
