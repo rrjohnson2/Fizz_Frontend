@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { CreateMemberTicket } from '../interfaces/create-member-ticket';
 import { Ticket } from '../interfaces/ticket';
 import { Member } from '../models/member';
+import { BehaviorSubject } from 'rxjs';
+import { Profile } from '../models/profile';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class GlobalService {
 
   public username: string;
 
-  public profile;
+  public profile:BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
 
   constructor(private http:HttpClient) { 
     this.username= localStorage.getItem("username");
@@ -35,7 +37,7 @@ export class GlobalService {
   }
   public populateProfile(data)
   {
-    this.profile = data.data;
+    this.profile.next(data.data);
   }
   public getProfile()
   {
