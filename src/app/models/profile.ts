@@ -4,14 +4,14 @@ import { Message } from "./message";
 import { Retort } from "./retort";
 
 export class Profile {
-created_ideas: Idea[];
-created_messages: Message[];
-created_retorts: Retort[]; 
-email: string;
-firstName: string;
-lastName: string;
-preferences: Preference[];
-username: string;
+    created_ideas: Idea[] = [];
+    created_messages: Message[] =[];
+    created_retorts: Retort[] =[]; 
+    email: string= '';
+    firstName: string= '';
+    lastName: string= '';
+    preferences: Preference[]=[];
+    username: string= '';
 
     constructor(
         created_ideas: Idea[],

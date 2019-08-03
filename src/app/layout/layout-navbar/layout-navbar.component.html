@@ -3,5 +3,10 @@
     <div class="logo_header col-6 ">
         <a class=" logo_title navbar-brand" href="javascript:void(0)">Fizz</a>
     </div>
+    <div class="col-6 text-right" *ngIf="profile != null" >
+        <button type="button" class="btn btn-1 btn-default" placement="left">
+            {{profile.firstName}} {{profile.lastName}}
+      </button>
+    </div>
   </div>
 </nav>

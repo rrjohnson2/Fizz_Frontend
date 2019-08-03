@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Profile } from 'src/app/models/profile';
 
 @Component({
   selector: 'app-layout-navbar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout-navbar.component.css']
 })
 export class LayoutNavbarComponent implements OnInit {
+
+  @Input() public profile:Profile;
 
   constructor() { }
 

@@ -14,7 +14,7 @@ export class GlobalService {
 
   public username: string;
 
-  public profile:BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
+  public profileSubject:BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
 
   constructor(private http:HttpClient) { 
     this.username= localStorage.getItem("username");
@@ -37,13 +37,17 @@ export class GlobalService {
   }
   public populateProfile(data)
   {
-    this.profile.next(data.data);
+    this.profileSubject.next(data.data);
   }
   public getProfile()
   {
     return this.http.get(this.back_url+"getProfile?username="+this.username);
   }
   
+  public updateProfile(profile:Profile)
+  {
+    this.profileSubject.next(profile);
+  }
 
 
 
