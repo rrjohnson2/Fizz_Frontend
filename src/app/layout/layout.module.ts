@@ -4,12 +4,14 @@ import { LayoutComponent } from './layout.component';
 import { LayoutRoutingModule } from './layout.routing.module';
 import { HomeComponent } from './home/home.component';
 import { LayoutNavbarComponent } from './layout-navbar/layout-navbar.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HomeComponent,
-    LayoutNavbarComponent
+    LayoutNavbarComponent,
+    ContentComponent
   ],
   imports: [
     CommonModule,
