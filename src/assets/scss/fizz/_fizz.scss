@@ -4,10 +4,16 @@ $navbar-height : 3.875rem;
      background-color: $gray-100;
 }
 .fizz_navbar{
-    margin-top: 0 !important;
     position: fixed;
     top: 0;
     width: 100vw;
+}
+.fizz_navbar, .fizz_navbar_login{
+    margin-top: 0 !important;
+}
+
+.fizz_navbar_login{
+    margin-bottom: 4vh;
 }
 .fizz_container{
     min-height: 100vh;
@@ -28,4 +34,5 @@ $navbar-height : 3.875rem;
 .logo_title{
     font-size: 2.5rem !important;
 }
+
 

@@ -26,7 +26,6 @@ export class LayoutComponent implements OnInit {
       {
         this.globalservice.populateProfile(data);
         this.profile= this.globalservice.profileSubject.asObservable();
-        console.log(this.profile);
       },
       error =>
       {
