@@ -20,7 +20,6 @@ export class LayoutNavbarComponent implements OnInit {
   updateForm:FormGroup;
   updateTicket:Ticket;
 
-  constructor(private router:Router, private globalService:GlobalService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.createForm();
@@ -127,7 +126,6 @@ public update()
       {
           this.globalService.populateProfile(data);
           this.updateForm.reset();
-          
       },
       error =>{
 
