@@ -18,6 +18,8 @@ import { SignupComponent } from './creative_tim/signup/signup.component';
 import { LoginComponent } from './creative_tim/login/login.component';
 import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NoticeComponent } from './shared/notice/notice.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     AppRoutingModule,
     HomeModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [AuthGuard,GlobalService],
   bootstrap: [AppComponent]

@@ -24,7 +24,10 @@ export class LayoutNavbarComponent implements OnInit {
   ngOnInit() {
     this.createForm();
   }
+    constructor(private globalService:GlobalService,private router:Router,private modalService:NgbModal)
+    {
 
+    }
   private createForm()
   {
     // tslint:disable-next-line: no-unused-expression

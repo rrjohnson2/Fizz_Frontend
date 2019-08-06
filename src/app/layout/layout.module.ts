@@ -7,13 +7,14 @@ import { LayoutNavbarComponent } from './layout-navbar/layout-navbar.component';
 import { ContentComponent } from './content/content.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HomeComponent,
     LayoutNavbarComponent,
-    ContentComponent
+    ContentComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +22,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     NgbDropdownModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule
   ]
 })
 export class LayoutModule { }
