@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Profile } from 'src/app/models/profile';
 import { NgbDropdown, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/services/global.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Ticket } from 'src/app/interfaces/ticket';
 
 @Component({
   selector: 'app-layout-navbar',
@@ -12,12 +14,50 @@ import { GlobalService } from 'src/app/services/global.service';
 export class LayoutNavbarComponent implements OnInit {
 
   @Input() public profile:Profile;
+
   autoCloseBool=false;
   closeResult: string;
+  updateForm:FormGroup;
+  updateTicket:Ticket;
 
   constructor(private router:Router, private globalService:GlobalService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  private createForm()
+  {
+    // tslint:disable-next-line: no-unused-expression
+    this.updateForm = new FormGroup(
+      {
+        firstname: new FormControl(null,
+          [
+            
+          ]),
+        lastname: new FormControl(null,
+          [
+            
+          ]),
+        email: new FormControl(null,
+          [
+            
+          ]),
+        password: new FormControl(null,
+          [
+            
+          ]),
+        username: new FormControl(null,
+          [
+
+          ]),
+        old_password: new FormControl(null,
+        [
+          Validators.required
+        ]),
+
+      }
+    );
   }
   public toggleDropDown(myDrop:NgbDropdown)
   {
@@ -64,6 +104,36 @@ private getDismissReason(reason: any): string {
   } else {
       return  `with: ${reason}`;
   }
+}
+
+public update()
+{
+  this.updateTicket =
+  {
+      customer: this.profile.username,
+      data: {
+        old_password: this.updateForm.get("old_password").value,
+        member: {
+          username: this.updateForm.get("username").value,
+          email: this.updateForm.get("email").value,
+          firstName: this.updateForm.get("firstname").value,
+          lastName: this.updateForm.get("lastname").value,
+          password: this.updateForm.get("password").value,
+        }
+      }
+  }
+    this.globalService.updateProfile(this.updateTicket).subscribe(
+      data =>
+      {
+          this.globalService.populateProfile(data);
+          this.updateForm.reset();
+          
+      },
+      error =>{
+
+      }
+    )
+
 }
 
 }

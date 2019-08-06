@@ -38,17 +38,19 @@ export class GlobalService {
   public populateProfile(data)
   {
     this.profileSubject.next(data.data);
+    this.populateMember(data);
   }
   public getProfile()
   {
     return this.http.get(this.back_url+"getProfile?username="+this.username);
   }
   
-  public updateProfile(profile:Profile)
-  {
-    this.profileSubject.next(profile);
-  }
+ 
 
+  public updateProfile(updateTicket: Ticket)
+  {
+    return this.http.post(this.back_url+"updateProfile",updateTicket);
+  }
 
 
 }

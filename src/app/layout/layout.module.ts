@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LayoutNavbarComponent } from './layout-navbar/layout-navbar.component';
 import { ContentComponent } from './content/content.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class LayoutModule { }
