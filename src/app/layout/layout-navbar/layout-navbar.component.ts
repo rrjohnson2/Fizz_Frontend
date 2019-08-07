@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Profile } from 'src/app/models/profile';
 import { NgbDropdown, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/services/global.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Ticket } from 'src/app/interfaces/ticket';
+import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
 
 @Component({
   selector: 'app-layout-navbar',
@@ -14,6 +15,7 @@ import { Ticket } from 'src/app/interfaces/ticket';
 export class LayoutNavbarComponent implements OnInit {
 
   @Input() public profile:Profile;
+  @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
 
   autoCloseBool=false;
   closeResult: string;
@@ -66,9 +68,7 @@ export class LayoutNavbarComponent implements OnInit {
     myDrop.toggle();
   }
 
-  public profileModal(){
-    console.log("here")
-  }
+ 
 
   public logoff(){
     localStorage.clear() ;
@@ -110,6 +110,13 @@ private getDismissReason(reason: any): string {
 
 public update()
 {
+  
+  if(!this.globalService.validateForm(this.updateForm,this.notify_ticket))
+    {
+      
+      return
+    }
+
   this.updateTicket =
   {
       customer: this.profile.username,
@@ -131,7 +138,10 @@ public update()
           this.updateForm.reset();
       },
       error =>{
-
+        this.notify_ticket.emit({
+          msg:error.error.message,
+          type:"danger"
+        })
       }
     )
 

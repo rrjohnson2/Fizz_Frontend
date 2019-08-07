@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 import { CreateMemberTicket } from 'src/app/interfaces/create-member-ticket';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,7 @@ export class SignupComponent implements OnInit {
 
     private create_member: CreateMemberTicket;
     public signupform: FormGroup;
+    @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
 
   constructor(private globalservice: GlobalService,private router:Router) { }
 
@@ -52,6 +54,11 @@ export class SignupComponent implements OnInit {
 
   public signUp()
   {
+    if(!this.globalservice.validateForm(this.signupform,this.notify_ticket))
+    {
+      return
+    }
+
     this.setUpTicket();
     this.globalservice.signUp(this.create_member).subscribe(
       data =>{
@@ -61,7 +68,10 @@ export class SignupComponent implements OnInit {
       
     error =>
     {
-      console.log(error.error)
+      this.notify_ticket.emit({
+        msg:error.error.message,
+        type:"danger"
+      });
     }
     );
   }
@@ -76,4 +86,7 @@ export class SignupComponent implements OnInit {
       username: this.signupform.get("username").value
     };
   }
+
+  
+ 
 }

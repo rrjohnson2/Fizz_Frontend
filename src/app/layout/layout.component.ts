@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from '../services/global.service';
 import { Router } from '@angular/router';
 import { Profile } from '../models/profile';
 import { Observable } from 'rxjs';
+import { NoticeComponent } from '../shared/notice/notice.component';
+import { NotifyTicket } from '../interfaces/notify-ticket';
 
 @Component({
   selector: 'app-layout',
@@ -12,6 +14,7 @@ import { Observable } from 'rxjs';
 export class LayoutComponent implements OnInit {
 
   private profile:Observable<Profile>;
+  @ViewChild(NoticeComponent) notice: NoticeComponent;
 
   constructor(private globalservice:GlobalService,private router:Router) { }
 
@@ -34,5 +37,11 @@ export class LayoutComponent implements OnInit {
     
       
     );
+  }
+
+  public notify(notify_ticket:NotifyTicket)
+  {
+    
+    this.globalservice.notify(this.notice,notify_ticket);
   }
 }

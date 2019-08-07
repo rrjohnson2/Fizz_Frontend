@@ -22,7 +22,7 @@ import { SharedModule } from '../shared/shared.module';
     NgbDropdownModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class LayoutModule { }

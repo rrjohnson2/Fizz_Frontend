@@ -1,6 +1,6 @@
 
 <div class="layout ">
-    <app-layout-navbar [profile]=" profile | async "></app-layout-navbar>
+    <app-layout-navbar (notify_ticket)="notify($event)" [profile]=" profile | async "></app-layout-navbar>
     <div class=" container fizz_container ">
       <div class="row fizz_body ">
         
@@ -9,7 +9,7 @@
             </div>
           
             <div class="col-8 fizz_content fizz_column">
-              <app-content ></app-content>
+              <app-content (notify_ticket)="notify($event)" ></app-content>
             </div>
 
       </div>
