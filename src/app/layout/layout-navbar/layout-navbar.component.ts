@@ -97,7 +97,7 @@ export class LayoutNavbarComponent implements OnInit {
         });
     }
 }
-
+ 
 private getDismissReason(reason: any): string {
   if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
