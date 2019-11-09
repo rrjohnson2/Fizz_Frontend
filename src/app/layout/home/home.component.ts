@@ -8,9 +8,10 @@ import { RealtimeService } from 'src/app/services/realtime.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private realTime:RealtimeService) { }
+  constructor() { }
 
   ngOnInit() {
+
   }
 
 }

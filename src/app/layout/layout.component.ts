@@ -5,6 +5,7 @@ import { Profile } from '../models/profile';
 import { Observable } from 'rxjs';
 import { NoticeComponent } from '../shared/notice/notice.component';
 import { NotifyTicket } from '../interfaces/notify-ticket';
+import { RealtimeService } from '../services/realtime.service';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +17,7 @@ export class LayoutComponent implements OnInit {
   private profile:Observable<Profile>;
   @ViewChild(NoticeComponent) notice: NoticeComponent;
 
-  constructor(private globalservice:GlobalService,private router:Router) { }
+  constructor(private globalservice:GlobalService,private router:Router,private realTime:RealtimeService) { }
 
   ngOnInit() {
     this.setupProfile();
@@ -29,6 +30,7 @@ export class LayoutComponent implements OnInit {
       {
         this.globalservice.populateProfile(data);
         this.profile= this.globalservice.profileSubject.asObservable();
+        this.realTime.joinRealTimeServer(data);
       },
       error =>
       {
