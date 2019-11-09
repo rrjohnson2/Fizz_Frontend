@@ -9,12 +9,7 @@ const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
-        children: 
-        [
-            {path:'', redirectTo:'home', pathMatch:'prefix'},
-            {path:'home', component: HomeComponent},
-            {path:'**', redirectTo:'home', pathMatch:'prefix'},
-        ]
+        children: []
     }
 ];
 

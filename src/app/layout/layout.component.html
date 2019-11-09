@@ -1,20 +1,6 @@
 
 <div class="layout ">
     <app-layout-navbar (notify_ticket)="notify($event)" [profile]=" profile | async "></app-layout-navbar>
-    <div class=" container fizz_container ">
-      <div class="row fizz_body ">
-        
-          <div class="col-4 fizz_sidebar fizz_column">
-              Activities
-            </div>
-          
-            <div class="col-8 fizz_content fizz_column">
-              <app-content (notify_ticket)="notify($event)" ></app-content>
-            </div>
-
-      </div>
-
-    
-    </div>
-</div>
-<app-notice></app-notice>
+    <app-home></app-home>
+    <app-notice></app-notice>
+  </div>

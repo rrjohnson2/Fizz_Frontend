@@ -16,7 +16,8 @@ const routes: Routes =[
     { path: 'tim_landing',          component: LandingComponent },
     { path: 'tim_login',          component: LoginComponent },
     { path: 'login', loadChildren: './login/login.module#LoginModule'},
-    { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] }
+    { path: 'profile', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
+    { path: '', redirectTo:'profile', pathMatch:"prefix"}
 ];
 
 @NgModule({
@@ -24,7 +25,6 @@ const routes: Routes =[
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes, {
-      useHash: true
     })
   ],
   exports: [
