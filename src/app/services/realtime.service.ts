@@ -6,11 +6,8 @@ import { Socket } from 'ngx-socket-io';
 export class RealtimeService {
 
   constructor(private socket:Socket) {
-    console.log("here");
+    
     
    }
-   something()
-   {
-     console.log("something")
-   }
+
 }
