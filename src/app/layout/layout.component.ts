@@ -30,7 +30,7 @@ export class LayoutComponent implements OnInit {
       {
         this.globalservice.populateProfile(data);
         this.profile= this.globalservice.profileSubject.asObservable();
-        this.realTime.joinRealTimeServer(data);
+        this.realTime.joinRealTimeServer();
       },
       error =>
       {

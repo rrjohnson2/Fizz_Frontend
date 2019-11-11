@@ -10,9 +10,9 @@ export class RealtimeService {
     
    }
 
-   joinRealTimeServer(profile:any)
+   joinRealTimeServer()
    {
-     this.socket.emit("join",profile);
+     this.socket.emit("join",localStorage.getItem("username"));
    }
 
 }
