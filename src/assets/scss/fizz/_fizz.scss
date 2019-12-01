@@ -20,6 +20,8 @@ $navbar-height : 3.875rem;
 }
 .fizz_body{
     padding-top: 2*($navbar-padding-y)+ $navbar-height;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     
 }
 

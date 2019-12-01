@@ -18,9 +18,7 @@ import { SignupComponent } from './creative_tim/signup/signup.component';
 import { LoginComponent } from './creative_tim/login/login.component';
 import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NoticeComponent } from './shared/notice/notice.component';
-import { SharedModule } from './shared/shared.module';
-import { RealtimeService } from './services/realtime.service';
+import { UIService } from './services/ui.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +39,7 @@ import { RealtimeService } from './services/realtime.service';
     HomeModule,
     HttpClientModule,
   ],
-  providers: [AuthGuard,GlobalService],
+  providers: [AuthGuard,GlobalService,UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
