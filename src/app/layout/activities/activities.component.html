@@ -1,26 +1,48 @@
-<button class="drop_down_button" (click)="open(classic1, 'modal_mini', 'sm')" >Share Idea</button>
+<button class="drop_down_button btn btn-1 btn-primary" (click)="open(classic1, 'modal_mini', 'sm')" >Share Idea</button>
 <div class="modal">
   <ng-template #classic1 let-c="close" let-d="dismiss">
     <div class="modal-content">
       <div class="modal-body p-0">
         <div class="card bg-secondary shadow border-0">
-            <div class="card-body px-lg-5 py-lg-5">
+            <div class="card-body px-lg-5 py-lg-5 ">
                 <form role="form" [formGroup]="ideaForm" (ngSubmit)=shareIdea()>
-                    <small>What is the title of your idea</small>
-                    <input formControlName="title" class="form-control" placeholder="Title/Summary" type="text" (focus)="focus1=true" (blur)="focus1=false">
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-1 btn-success">Share</button>
-                    </div>
+                   <div class="idea_modal">
+                      <div *ngIf="ideaFormSelection == 0 " class="form_input">
+                          <fieldset>
+                              <legend>Title of Your Idea</legend>
+                              <input formControlName="title" class="form-control" placeholder="Title/Summary" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                          </fieldset>
+                        </div>
+                        <div *ngIf="ideaFormSelection == 1 " class="form_input">
+                          <fieldset>
+                            <legend>Description</legend>
+                            <textarea formControlName="description" class="form-control" (focus)="focus1=true" (blur)="focus1=false" cols="30" rows="10"></textarea>
+                          </fieldset>
+                        </div>
+                        <div *ngIf="ideaFormSelection == 2 " class="form_input">
+                          <fieldset>      
+                            <legend>Relevant Categories</legend>  
+                            <div *ngFor="let cate of categories" _ngcontent-c5="" class="custom-control custom-checkbox mb-3">
+                                <input _ngcontent-c5="" class="custom-control-input"  type="checkbox">
+                                <label _ngcontent-c5="" class="custom-control-label" for="customCheck1">
+                                  <span _ngcontent-c5="">{{cate}}</span>
+                                </label>
+                              </div> 
+                          </fieldset>  
+                        </div>
+                   </div>
                 </form>
-                <div  *ngIf="ideaFormSelectionObservable  | async" class="row justify-content-center">
-                  <div  class="col-6 ">
-                     <div >
-                        <button class="btn btn-1 my-4" (click)=nextInput(false)>Back</button>
+                <div  class="row ">
+                 
+                     <div class="col-6">
+                        <button  *ngIf ="ideaFormSelection != 0" class="btn btn-1 my-4" (click)=nextInput(false)>Back</button>
                      </div>
-                  </div>
-                  <div  class="col-6 text-right">
-                      <button class="btn btn-1 my-4" (click)=nextInput(true)>Next</button>
-                  </div>
+                  
+                      <div class="col-6 text-right" >
+                        <button *ngIf ="ideaFormSelection != 2" class="btn btn-1 my-4" (click)=nextInput(true)>Next</button>
+                        <button *ngIf ="ideaFormSelection == 2 && this.ideaForm.valid" class="btn btn-1 btn-success" type="submit" >Share</button>
+                      </div>
+                  
                 </div>
             </div>
         </div>

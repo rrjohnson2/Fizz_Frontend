@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Profile } from '../models/profile';
 import { NoticeComponent } from '../shared/notice/notice.component';
 import { NotifyTicket } from '../interfaces/notify-ticket';
-import { FormGroup, AbstractControl } from '@angular/forms';
-import { Actions } from '../constants/app.constants';
+import { FormGroup,  } from '@angular/forms';
+import { Actions, backend_url } from '../constants/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ import { Actions } from '../constants/app.constants';
 export class GlobalService {
 
 
-  private back_url = "http://localhost:8080/";
+
 
   public username: string;
 
@@ -30,11 +30,11 @@ export class GlobalService {
    * signUp
    */
   public signUp(ticket_member:CreateMemberTicket) {
-     return this.http.post(this.back_url + 'createMember', ticket_member);
+     return this.http.post( backend_url + 'createMember', ticket_member);
   }
 
   public login(ticket:Ticket) {
-    return this.http.post(this.back_url + 'login', ticket);
+    return this.http.post(backend_url + 'login', ticket);
  }
   public populateMember(data)
   {
@@ -48,7 +48,7 @@ export class GlobalService {
   }
   public getProfile()
   {
-    return this.http.get(this.back_url+"getProfile?username="+this.username);
+    return this.http.get(backend_url+"getProfile?username="+this.username);
   }
   
  
@@ -77,7 +77,7 @@ export class GlobalService {
 
   public updateProfile(updateTicket: Ticket)
   {
-    return this.http.post(this.back_url+"updateProfile",updateTicket);
+    return this.http.post(backend_url+"updateProfile",updateTicket);
   }
 
    public notify(notice: NoticeComponent, notify_ticket:NotifyTicket) {
