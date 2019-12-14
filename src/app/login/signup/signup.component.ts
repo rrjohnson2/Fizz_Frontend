@@ -4,6 +4,7 @@ import { CreateMemberTicket } from 'src/app/interfaces/create-member-ticket';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { Actions } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-signup',
@@ -70,7 +71,8 @@ export class SignupComponent implements OnInit {
     {
       this.notify_ticket.emit({
         msg:error.error.message,
-        type:"danger"
+        type:"danger",
+        action_attempted:Actions.signup
       });
     }
     );

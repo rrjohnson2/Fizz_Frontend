@@ -8,33 +8,13 @@ import { Profile } from '../models/profile';
 import { NoticeComponent } from '../shared/notice/notice.component';
 import { NotifyTicket } from '../interfaces/notify-ticket';
 import { FormGroup, AbstractControl } from '@angular/forms';
+import { Actions } from '../constants/app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
-  
-  public validateForm(form:FormGroup, notify_ticket:EventEmitter<NotifyTicket>):boolean {
-    if(form.invalid)
-    {
-      var name:string;
 
-      // tslint:disable-next-line: forin
-      for (const n in form.controls) {
-        if (form.controls[n].invalid) {
-            name=n;
-            break;
-        }
-      }
-      notify_ticket.emit({
-        msg: name+" is Invalid",
-        // tslint:disable-next-line: whitespace
-        type:"danger"
-      });
-      return false;
-    }
-    return true;
-  }
 
   private back_url = "http://localhost:8080/";
 
@@ -72,6 +52,28 @@ export class GlobalService {
   }
   
  
+  public validateForm(form:FormGroup, notify_ticket:EventEmitter<NotifyTicket>):boolean {
+    if(form.invalid)
+    {
+      var name:string;
+
+      // tslint:disable-next-line: forin
+      for (const n in form.controls) {
+        if (form.controls[n].invalid) {
+            name=n;
+            break;
+        }
+      }
+      notify_ticket.emit({
+        msg: name+" is Invalid",
+        // tslint:disable-next-line: whitespace
+        type:"danger",
+        action_attempted: Actions.login
+      });
+      return false;
+    }
+    return true;
+  }
 
   public updateProfile(updateTicket: Ticket)
   {
@@ -82,6 +84,11 @@ export class GlobalService {
     notice.add(notify_ticket);
     
   }
+  public   flush() {
+    this.profileSubject.next(null);
+    this.username = null;
+  }
+
 
 
 }

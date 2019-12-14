@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Profile } from 'src/app/models/profile';
-import { NgbDropdown, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/services/global.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Ticket } from 'src/app/interfaces/ticket';
 import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
 import { UIService } from 'src/app/services/ui.service';
-
+import { Actions } from 'src/app/constants/app.constants';
 @Component({
   selector: 'app-layout-navbar',
   templateUrl: './layout-navbar.component.html',
@@ -72,8 +72,8 @@ export class LayoutNavbarComponent implements OnInit {
  
 
   public logoff(){
-    localStorage.clear() ;
-    this.globalService.username=null;
+    localStorage.clear();
+    this.globalService.flush();
     this.router.navigate(['/login']);
   }
 
@@ -115,7 +115,8 @@ public update()
       error =>{
         this.notify_ticket.emit({
           msg:error.error.message,
-          type:"danger"
+          type:"danger",
+          action_attempted: Actions.logOff
         })
       }
     )

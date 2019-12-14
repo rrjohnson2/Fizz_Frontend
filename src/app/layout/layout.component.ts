@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { NoticeComponent } from '../shared/notice/notice.component';
 import { NotifyTicket } from '../interfaces/notify-ticket';
 import { RealtimeService } from '../services/realtime.service';
+import { Actions } from '../constants/app.constants';
 
 @Component({
   selector: 'app-layout',
@@ -43,7 +44,6 @@ export class LayoutComponent implements OnInit {
 
   public notify(notify_ticket:NotifyTicket)
   {
-    
     this.globalservice.notify(this.notice,notify_ticket);
   }
 }

@@ -4,10 +4,10 @@
     <div class="container">
       <div class="row fizz_body ">
         <div class="col-4 fizz_col">
-          <app-activities></app-activities>
+          <app-activities (notify_ticket)="notify($event)" [profile]=" profile | async "></app-activities>
         </div>
         <div class="col-8 fizz_col">
-          <app-content></app-content>
+          <app-content (notify_ticket)="notify($event)" [profile]=" profile | async "></app-content>
         </div>
       </div>
     </div>

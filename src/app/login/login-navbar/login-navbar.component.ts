@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Ticket } from 'src/app/interfaces/ticket';
 import { Router } from '@angular/router';
 import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { Actions } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-login-navbar',
@@ -62,7 +63,8 @@ public Login()
     {
       this.notify_ticket.emit({
         msg:error.error.message,
-        type:"danger"
+        type:"danger",
+        action_attempted: Actions.login
       })
     }
     
