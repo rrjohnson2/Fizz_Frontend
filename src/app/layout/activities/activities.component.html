@@ -21,29 +21,29 @@
                         </div>
                         <div *ngIf="ideaFormSelection == 2 " class="form_input">
                           <fieldset>      
-                            <legend>Relevant Categories</legend>  
-                            <div *ngFor="let cate of categories" _ngcontent-c5="" class="custom-control custom-checkbox mb-3">
-                                <input _ngcontent-c5="" class="custom-control-input"  type="checkbox">
-                                <label _ngcontent-c5="" class="custom-control-label" for="customCheck1">
-                                  <span _ngcontent-c5="">{{cate}}</span>
+                            <legend>Relevant Categories</legend> 
+                            <div *ngFor="let cate of categories.value; let i =index" _ngcontent-c5="" class="custom-control custom-checkbox mb-3">
+                                <input [formControl]="cate" class="custom-control-input" id={{focuses[i].name}} type="checkbox" unchecked>
+                                <label class="custom-control-label" for={{focuses[i].name}}>
+                                  <span>{{focuses[i].name}}</span>
                                 </label>
                               </div> 
                           </fieldset>  
                         </div>
                    </div>
-                </form>
                 <div  class="row ">
                  
-                     <div class="col-6">
-                        <button  *ngIf ="ideaFormSelection != 0" class="btn btn-1 my-4" (click)=nextInput(false)>Back</button>
+                    <div class="col-6">
+                       <button  *ngIf ="ideaFormSelection != 0" class="btn btn-1 my-4" (click)=nextInput(false)>Back</button>
+                    </div>
+                 
+                     <div class="col-6 text-right" >
+                       <button *ngIf ="ideaFormSelection != 2" class="btn btn-1 my-4" (click)=nextInput(true)>Next</button>
+                       <button *ngIf ="ideaFormSelection == 2 && this.ideaForm.valid" class="btn btn-1 my-4 btn-success " type="submit" >Share</button>
                      </div>
-                  
-                      <div class="col-6 text-right" >
-                        <button *ngIf ="ideaFormSelection != 2" class="btn btn-1 my-4" (click)=nextInput(true)>Next</button>
-                        <button *ngIf ="ideaFormSelection == 2 && this.ideaForm.valid" class="btn btn-1 btn-success" type="submit" >Share</button>
-                      </div>
-                  
-                </div>
+                 
+               </div>
+                </form>
             </div>
         </div>
       </div>
