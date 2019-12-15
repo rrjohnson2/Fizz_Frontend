@@ -8,6 +8,9 @@ import { Ticket } from 'src/app/interfaces/ticket';
 import { ShareIdeaData } from 'src/app/interfaces/shareIdeaData';
 import { ThrowStmt } from '@angular/compiler';
 import { Focus } from 'src/app/models/focus';
+import { error } from 'util';
+import { GlobalService } from 'src/app/services/global.service';
+import { Actions } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-activities',
@@ -24,7 +27,7 @@ export class ActivitiesComponent implements OnInit {
   @Input() public profile:Profile;
 
 
-  constructor(private uiService:UIService,private activitiesService:ActivitiesService , private formBuilder:FormBuilder) {
+  constructor(private uiService:UIService,private activitiesService:ActivitiesService , private formBuilder:FormBuilder, private globalService:GlobalService) {
     
    }
 
@@ -78,9 +81,24 @@ export class ActivitiesComponent implements OnInit {
       customer:this.profile.username,
       data: shareIdeaData
     };
-
-    console.log(shareIdeaTicket);
-
+    this.activitiesService.shareIdea(shareIdeaTicket).subscribe(
+      data =>
+      {
+        var message:any = data;
+        this.notify_ticket.emit({
+          msg: message.data.message.toString(),
+          action_attempted: Actions.shareIdea,
+          type: "success"
+        })
+      },
+      error =>{
+        this.notify_ticket.emit({
+          msg:error.error.message,
+          action_attempted: Actions.shareIdea,
+          type: "danger"
+        })
+      }
+    );
   }
   populateCategories(): Focus[] {
     var temp:Focus[] =[]
@@ -88,11 +106,9 @@ export class ActivitiesComponent implements OnInit {
     controls = this.categories.value;
     for (var i =0; i< controls.length; i++ ) {
       if (controls[i].value==true) {
-          temp.push(new Focus(this.focuses[i],null));
+          temp.push(new Focus(this.focuses[i].name,null));
       }
     }
-
-    console.log(temp);
 
     return temp;
   }
@@ -112,7 +128,7 @@ export class ActivitiesComponent implements OnInit {
           this.ideaFormSelection--;
         break;
     }
-    
+     
   }
   private renderCategories(categories)
   { 
