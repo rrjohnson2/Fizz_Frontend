@@ -7,6 +7,9 @@ export class RealtimeService {
 
   constructor(private socket:Socket) {
     
+    this.socket.on("notice",(data)=>{
+      console.log(data);
+    });
    }
 
    joinRealTimeServer()
