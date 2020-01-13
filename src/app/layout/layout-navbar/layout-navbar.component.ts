@@ -125,4 +125,8 @@ public update()
 
 }
 
+public showNotice(notice)
+  { console.log (this.profile);
+     console.log(notice);
+  }
 }

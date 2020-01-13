@@ -4,7 +4,7 @@
         <a class=" logo_title navbar-brand" href="javascript:void(0)">Fizz</a>
     </div>
     <div class="col-5 text-right row " *ngIf="profile != null" ngbDropdown #myDrop="ngbDropdown" placement="left"  >
-        <button type="button" class="btn btn-1 btn-default"   id="dropdownManual" ngbDropdownAnchor  (click)="toggleDropDown(myDrop)">
+        <button class="drop_down_fizz" type="button" class="btn btn-1 btn-default"   id="dropdownManual" ngbDropdownAnchor  (click)="toggleDropDown(myDrop)">
           {{profile.firstName}} {{profile.lastName}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual" class="profile_dropdown">
@@ -17,7 +17,36 @@
         <img id="notice_icon" src="./assets/img/icons/common/notice_empty.png" alt="unfilled notice">
       </div>
       <ng-template #filled>
-        <img id="notice_icon" src="./assets/img/icons/common/notice_filled.png" alt="unfilled notice">
+        <div ngbDropdown #noticeDrop="ngbDropdown" placement="bottom">
+          <a class="nav-link nav-link-icon drop_down_fizz" ngbDropdownAnchor (click)="toggleDropDown(noticeDrop)">
+            <img id="notice_icon" src="./assets/img/icons/common/notice_filled.png">
+          </a>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual" class="notice_dropdown">
+            <div *ngFor="let notice of notifications" class="card notice_card">
+              <ng-template *ngIf="notice.action == COMMENT; else retort">
+                // card for comment
+              </ng-template>
+              <ng-template #retort *ngIf="notice.action == RETORT; else focus">
+                // card for retort
+              </ng-template>
+              <ng-template #focus>
+                <button  class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
+                 <div> Idea Shared In 
+                  <span *ngFor="let foc of notice.data.focus">
+                      <span *ngFor="let pref of profile.preferences">
+                        <span *ngIf="foc.category == pref.category">
+                          {{foc.category}} 
+                        </span>
+                      </span>
+                    </span> 
+                  </div>
+
+                </button>
+              </ng-template>
+              
+            </div>
+          </div>
+        </div>
       </ng-template>
   </div>
   </div>
