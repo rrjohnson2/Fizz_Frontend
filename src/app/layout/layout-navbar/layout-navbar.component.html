@@ -3,15 +3,23 @@
     <div class="logo_header col-6 ">
         <a class=" logo_title navbar-brand" href="javascript:void(0)">Fizz</a>
     </div>
-    <div class="col-6 text-right" *ngIf="profile != null" ngbDropdown #myDrop="ngbDropdown" placement="left"  >
+    <div class="col-5 text-right row " *ngIf="profile != null" ngbDropdown #myDrop="ngbDropdown" placement="left"  >
         <button type="button" class="btn btn-1 btn-default"   id="dropdownManual" ngbDropdownAnchor  (click)="toggleDropDown(myDrop)">
-            {{profile.firstName}} {{profile.lastName}}
-      </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownManual" class="profile_dropdown">
-        <button class="drop_down_button" (click)="open(classic1, 'modal_mini', 'sm')" ngbDropdownItem>Update Profile</button>
-        <button class="drop_down_button" (click)="logoff()" ngbDropdownItem>Log Off</button>
-      </div>
+          {{profile.firstName}} {{profile.lastName}}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual" class="profile_dropdown">
+          <button class="drop_down_button" (click)="open(classic1, 'modal_mini', 'sm')" ngbDropdownItem>Update Profile</button>
+          <button class="drop_down_button" (click)="logoff()" ngbDropdownItem>Log Off</button>
+        </div>
     </div>
+    <div class=" col-1">
+      <div *ngIf="notifications.length == 0; else filled ">
+        <img id="notice_icon" src="./assets/img/icons/common/notice_empty.png" alt="unfilled notice">
+      </div>
+      <ng-template #filled>
+        <img id="notice_icon" src="./assets/img/icons/common/notice_filled.png" alt="unfilled notice">
+      </ng-template>
+  </div>
   </div>
 </nav>
 
@@ -100,3 +108,4 @@
     </div>
   </ng-template>
 </div>
+

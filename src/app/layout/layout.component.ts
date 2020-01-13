@@ -3,10 +3,11 @@ import { GlobalService } from '../services/global.service';
 import { Router } from '@angular/router';
 import { Profile } from '../models/profile';
 import { Observable } from 'rxjs';
-import { NoticeComponent } from '../shared/notice/notice.component';
-import { NotifyTicket } from '../interfaces/notify-ticket';
+import { AlertComponent } from '../shared/alerts/alert.component';
+import { AlertTicket } from '../interfaces/alert-ticket';
 import { RealtimeService } from '../services/realtime.service';
 import { Actions } from '../constants/app.constants';
+import { Notice } from '../models/notice';
 
 @Component({
   selector: 'app-layout',
@@ -16,12 +17,17 @@ import { Actions } from '../constants/app.constants';
 export class LayoutComponent implements OnInit {
 
   private profile:Observable<Profile>;
-  @ViewChild(NoticeComponent) notice: NoticeComponent;
+  private notifications:Observable<Notice[]>;
+  @ViewChild(AlertComponent) alert: AlertComponent;
 
-  constructor(private globalservice:GlobalService,private router:Router,private realTime:RealtimeService) { }
+  constructor(
+    private globalservice:GlobalService,
+    private router:Router,
+    private realTime:RealtimeService) { }
 
   ngOnInit() {
     this.setupProfile();
+    this.notifications = this.realTime.noticfications.asObservable();
   }
 
   private setupProfile()
@@ -42,8 +48,8 @@ export class LayoutComponent implements OnInit {
     );
   }
 
-  public notify(notify_ticket:NotifyTicket)
+  public alerty(alert_ticket:AlertTicket)
   {
-    this.globalservice.notify(this.notice,notify_ticket);
+    this.globalservice.notify(this.alert,alert_ticket);
   }
 }

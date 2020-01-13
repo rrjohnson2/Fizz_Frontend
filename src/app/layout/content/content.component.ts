@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 import { Profile } from 'src/app/models/profile';
 
 @Component({
@@ -8,7 +8,7 @@ import { Profile } from 'src/app/models/profile';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
+  @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
   @Input() public profile:Profile;
   constructor() { }
 

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 
 @Component({
-  selector: 'app-notice',
-  templateUrl: './notice.component.html',
-  styleUrls: ['./notice.component.css']
+  selector: 'app-alert',
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.css']
 })
-export class NoticeComponent implements OnInit {
+export class AlertComponent implements OnInit {
 
   @Input()
   public alerts: Array<IAlert> = [];
@@ -45,10 +45,10 @@ export class NoticeComponent implements OnInit {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
   }
 
-  public add(notify_ticket:NotifyTicket)
+  public add(alert_ticket:AlertTicket)
   {
       var type:Type ;
-      switch (notify_ticket.type) {
+      switch (alert_ticket.type) {
         case "success":
             type= this.types.success
           break;
@@ -68,10 +68,10 @@ export class NoticeComponent implements OnInit {
       
       var alert:IAlert = {
         id: this.count,
-        message:notify_ticket.msg,
+        message:alert_ticket.msg,
         strong:type.strong,
         icon:type.icon,
-        type:notify_ticket.type
+        type:alert_ticket.type
       };
       this.alerts.push(alert);
       setTimeout(

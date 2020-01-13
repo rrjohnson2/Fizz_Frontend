@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/services/global.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Ticket } from 'src/app/interfaces/ticket';
-import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 import { UIService } from 'src/app/services/ui.service';
 import { Actions } from 'src/app/constants/app.constants';
+import { Notice } from 'src/app/models/notice';
 @Component({
   selector: 'app-layout-navbar',
   templateUrl: './layout-navbar.component.html',
@@ -16,7 +17,8 @@ import { Actions } from 'src/app/constants/app.constants';
 export class LayoutNavbarComponent implements OnInit {
 
   @Input() public profile:Profile;
-  @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
+  @Input() public notifications:Notice[];
+  @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
 
   autoCloseBool=false;
   closeResult: string;
@@ -86,7 +88,7 @@ export class LayoutNavbarComponent implements OnInit {
 public update()
 {
   
-  if(!this.globalService.validateForm(this.updateForm,this.notify_ticket))
+  if(!this.globalService.validateForm(this.updateForm,this.alert_ticket))
     {
       
       return
@@ -113,7 +115,7 @@ public update()
           this.updateForm.reset();
       },
       error =>{
-        this.notify_ticket.emit({
+        this.alert_ticket.emit({
           msg:error.error.message,
           type:"danger",
           action_attempted: Actions.logOff

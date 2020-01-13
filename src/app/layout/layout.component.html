@@ -1,15 +1,16 @@
 
 <div class="layout ">
-    <app-layout-navbar (notify_ticket)="notify($event)" [profile]=" profile | async "></app-layout-navbar>
+    <app-layout-navbar (alert_ticket)="alerty($event)" [profile]=" profile | async "
+    [notifications] = "notifications | async"></app-layout-navbar>
     <div class="container">
       <div class="row fizz_body ">
         <div class="col-4 fizz_col">
-          <app-activities (notify_ticket)="notify($event)" [profile]=" profile | async "></app-activities>
+          <app-activities (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-activities>
         </div>
         <div class="col-8 fizz_col">
-          <app-content (notify_ticket)="notify($event)" [profile]=" profile | async "></app-content>
+          <app-content (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-content>
         </div>
       </div>
     </div>
-    <app-notice></app-notice>
+    <app-alert></app-alert>
   </div>

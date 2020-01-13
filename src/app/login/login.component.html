@@ -1,13 +1,13 @@
-<app-login-navbar (notify_ticket)="notify($event)"></app-login-navbar>    
+<app-login-navbar (alert_ticket)="notify($event)"></app-login-navbar>    
 
 <div class="container">
     <div class="body row">
         <div class="signup col-6">
-            <app-signup (notify_ticket)="notify($event)"></app-signup>
+            <app-signup (alert_ticket)="notify($event)"></app-signup>
         </div>
         <div class="login col-6">
             <app-welcome></app-welcome>
         </div>
     </div>
 </div>
-<app-notice></app-notice>
+<app-alert></app-alert>

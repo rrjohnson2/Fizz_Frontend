@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UIService } from 'src/app/services/ui.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 import { Profile } from 'src/app/models/profile';
 import { ActivitiesService } from './activities.service';
 import { Ticket } from 'src/app/interfaces/ticket';
@@ -23,7 +23,7 @@ export class ActivitiesComponent implements OnInit {
   ideaFormSelection:number = 0
   focuses = []
 
-  @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
+  @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
   @Input() public profile:Profile;
 
 
@@ -85,14 +85,14 @@ export class ActivitiesComponent implements OnInit {
       data =>
       {
         var message:any = data;
-        this.notify_ticket.emit({
+        this.alert_ticket.emit({
           msg: message.data.message.toString(),
           action_attempted: Actions.shareIdea,
           type: "success"
         })
       },
       error =>{
-        this.notify_ticket.emit({
+        this.alert_ticket.emit({
           msg:error.error.message,
           action_attempted: Actions.shareIdea,
           type: "danger"

@@ -5,8 +5,8 @@ import { Ticket } from '../interfaces/ticket';
 import { Member } from '../models/member';
 import { BehaviorSubject } from 'rxjs';
 import { Profile } from '../models/profile';
-import { NoticeComponent } from '../shared/notice/notice.component';
-import { NotifyTicket } from '../interfaces/notify-ticket';
+import { AlertComponent } from '../shared/alerts/alert.component';
+import { AlertTicket } from '../interfaces/alert-ticket';
 import { FormGroup,  } from '@angular/forms';
 import { Actions, backend_url } from '../constants/app.constants';
 
@@ -52,7 +52,7 @@ export class GlobalService {
   }
   
  
-  public validateForm(form:FormGroup, notify_ticket:EventEmitter<NotifyTicket>):boolean {
+  public validateForm(form:FormGroup, alert_ticket:EventEmitter<AlertTicket>):boolean {
     if(form.invalid)
     {
       var name:string;
@@ -64,7 +64,7 @@ export class GlobalService {
             break;
         }
       }
-      notify_ticket.emit({
+      alert_ticket.emit({
         msg: name+" is Invalid",
         // tslint:disable-next-line: whitespace
         type:"danger",
@@ -80,8 +80,8 @@ export class GlobalService {
     return this.http.post(backend_url+"updateProfile",updateTicket);
   }
 
-   public notify(notice: NoticeComponent, notify_ticket:NotifyTicket) {
-    notice.add(notify_ticket);
+   public notify(notice: AlertComponent, alert_ticket:AlertTicket) {
+    notice.add(alert_ticket);
     
   }
   public   flush() {

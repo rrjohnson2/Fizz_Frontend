@@ -3,7 +3,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { CreateMemberTicket } from 'src/app/interfaces/create-member-ticket';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 import { Actions } from 'src/app/constants/app.constants';
 
 @Component({
@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
 
     private create_member: CreateMemberTicket;
     public signupform: FormGroup;
-    @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
+    @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
 
   constructor(private globalservice: GlobalService,private router:Router) { }
 
@@ -55,7 +55,7 @@ export class SignupComponent implements OnInit {
 
   public signUp()
   {
-    if(!this.globalservice.validateForm(this.signupform,this.notify_ticket))
+    if(!this.globalservice.validateForm(this.signupform,this.alert_ticket))
     {
       return
     }
@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
       
     error =>
     {
-      this.notify_ticket.emit({
+      this.alert_ticket.emit({
         msg:error.error.message,
         type:"danger",
         action_attempted:Actions.signup

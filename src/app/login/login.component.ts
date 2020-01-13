@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NoticeComponent } from '../shared/notice/notice.component';
+import { AlertComponent } from '../shared/alerts/alert.component';
 import { GlobalService } from '../services/global.service';
-import { NotifyTicket } from '../interfaces/notify-ticket';
+import { AlertTicket } from '../interfaces/alert-ticket';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +9,16 @@ import { NotifyTicket } from '../interfaces/notify-ticket';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-@ViewChild(NoticeComponent) notice: NoticeComponent;
+@ViewChild(AlertComponent) notice: AlertComponent;
 
   constructor(private globalService:GlobalService) { }
 
   ngOnInit() {
   }
   
-  public notify(notify_ticket:NotifyTicket)
+  public notify(alert_ticket:AlertTicket)
   {
-    this.globalService.notify(this.notice,notify_ticket);
+    this.globalService.notify(this.notice,alert_ticket);
   }
 
 }

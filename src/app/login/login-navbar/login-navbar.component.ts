@@ -3,7 +3,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Ticket } from 'src/app/interfaces/ticket';
 import { Router } from '@angular/router';
-import { NotifyTicket } from 'src/app/interfaces/notify-ticket';
+import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 import { Actions } from 'src/app/constants/app.constants';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginNavbarComponent implements OnInit {
   public loginForm: FormGroup;
   private receipt;
 
-  @Output() notify_ticket: EventEmitter<NotifyTicket> = new EventEmitter<NotifyTicket>();
+  @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
 
 constructor(private globalservice: GlobalService, private router:Router) { }
 
@@ -43,7 +43,7 @@ private createForm()
 
 public Login()
 {
-  if(!this.globalservice.validateForm(this.loginForm,this.notify_ticket))
+  if(!this.globalservice.validateForm(this.loginForm,this.alert_ticket))
     {
       
       return
@@ -61,7 +61,7 @@ public Login()
     },
     error =>
     {
-      this.notify_ticket.emit({
+      this.alert_ticket.emit({
         msg:error.error.message,
         type:"danger",
         action_attempted: Actions.login
@@ -81,7 +81,7 @@ private setUpTicket()
 
 public validateForm() {
 
-  this.globalservice.validateForm(this.loginForm,this.notify_ticket);
+  this.globalservice.validateForm(this.loginForm,this.alert_ticket);
   
 }
 
