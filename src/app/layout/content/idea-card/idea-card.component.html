@@ -1,0 +1,25 @@
+<div class="card fizz_card ">
+  <div class="card-header fizz_card_header">
+    <div class="cards-title">
+      <div class="row">
+        <div class="col-6">User: {{idea.creator.username}} </div>
+        <div class="col-6 text-right">{{time_since}}</div>
+        <div class="col-6"></div>
+      </div>
+    </div>
+  </div>
+  <div class=" card-body fizz_card_body">
+    <div class="card-subtitle mb-2 text-muted text-center"> {{idea.title}}</div>
+    <p class=" card-text text-center">{{idea.description}}</p>
+  </div>
+  <div class="card-footer text-muted fizz_card_footer ">
+    <div class="row">
+      <div class=" col-6">
+        UVotes:{{idea.upVotes}} DVotes:{{idea.downVotes}}
+      </div>
+      <a class="col-6 text-right">
+        {{idea.retorts.length}} retorts
+      </a>
+    </div>
+  </div>
+</div>

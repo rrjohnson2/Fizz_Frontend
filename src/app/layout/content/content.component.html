@@ -1,1 +1,10 @@
-<div>{{profile?.firstName}} content works</div>
+<div class="container">
+    <div *ngIf="ideas != null; empty" class="ideas_body">
+        <div *ngFor="let idea of ideas">
+           <app-idea-card [idea]="idea"></app-idea-card>
+        </div>
+    </div>
+    <ng-template #empty>
+        Please tell more people abous us!!!!!
+    </ng-template>
+</div>

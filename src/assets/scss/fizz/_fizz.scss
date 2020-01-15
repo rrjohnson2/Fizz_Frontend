@@ -2,6 +2,7 @@
 $navbar-height : 3.875rem;
 .layout{
      background-color: $gray-100;
+     min-height: 100vh;
 }
 .fizz_navbar{
     position: fixed;
@@ -19,15 +20,16 @@ $navbar-height : 3.875rem;
     min-height: 100vh;
 }
 .fizz_body{
-    padding-top: 2*($navbar-padding-y)+ $navbar-height;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    margin-top: 2*($navbar-padding-y)+ $navbar-height;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     
 }
 
-.fizz_column{
+.fizz_col{
     // border-right: solid .25vh $gray-300;
-    min-height: 5vh;
+    padding: 0 !important;
+    margin-top: 2.5vh;
 
 }
 .logo_header, .login_form, .signup_input, .login_root {
@@ -43,10 +45,21 @@ $navbar-height : 3.875rem;
     height: 5vh;
     width: 5vh;
 }
-.drop_down_fizz
-{
-}
+
 .notice_card{
     width: 50vh !important;
+}
+.ideas_body{
+   // min-height: 100rem - 2*($navbar-padding-y)+ $navbar-height;
+}
+.fizz_card
+{
+    margin-bottom: 2.5vh;
+}
+
+.fizz_card_header,.fizz_card_footer{
+    background-color: $white !important;
+    padding-top: 1vh !important;
+    padding-bottom: 1vh !important;
 }
 
