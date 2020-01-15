@@ -15,6 +15,7 @@ import { ContentService } from './content/content.service';
 import { IdeaCardComponent } from './content/idea-card/idea-card.component';
 import { RetortCardComponent } from './content/retort-card/retort-card.component';
 import { MessageCardComponent } from './content/message-card/message-card.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -30,6 +31,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   imports: [
     CommonModule,
+    MatExpansionModule,
     LayoutRoutingModule,
     NgbDropdownModule,
     ReactiveFormsModule,

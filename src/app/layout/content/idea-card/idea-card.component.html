@@ -14,12 +14,18 @@
   </div>
   <div class="card-footer text-muted fizz_card_footer ">
     <div class="row">
-      <div class=" col-6">
+      <div class=" col-12 text-center">
         UVotes:{{idea.upVotes}} DVotes:{{idea.downVotes}}
       </div>
-      <a class="col-6 text-right">
-        {{idea.retorts.length}} retorts
-      </a>
+      <mat-expansion-panel class="col-12 text-center fizz_expansion_panel">
+        <mat-expansion-panel-header>
+          <mat-panel-description>{{idea.retorts.length}} retorts</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let retort of idea.retorts">
+          <app-retort-card [idea_id]="idea.id" [retort]="retort"></app-retort-card>
+        </div>
+        <input onkeydown="return event.key != 'Enter';"  class="form-control" placeholder="Write a Retort" type="text" (focus)="focus1=true" (blur)="focus1=false">
+      </mat-expansion-panel>
     </div>
   </div>
 </div>

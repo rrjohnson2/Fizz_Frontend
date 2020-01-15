@@ -19,6 +19,7 @@ import { LoginComponent } from './creative_tim/login/login.component';
 import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UIService } from './services/ui.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UIService } from './services/ui.service';
     AppRoutingModule,
     HomeModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthGuard,GlobalService,UIService],
   bootstrap: [AppComponent]
