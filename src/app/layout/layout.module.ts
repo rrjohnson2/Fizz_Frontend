@@ -11,6 +11,7 @@ import { RealtimeService } from '../services/realtime.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ActivitiesComponent } from './activities/activities.component';
 import { ActivitiesService } from './activities/activities.service';
+import { ContentService } from './content/content.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -30,6 +31,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     SharedModule,
     SocketIoModule.forRoot(config)
   ],
-  providers:[RealtimeService,ActivitiesService]
+  providers:[RealtimeService,ActivitiesService,ContentService]
 })
 export class LayoutModule { }

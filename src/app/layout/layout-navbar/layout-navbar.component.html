@@ -3,9 +3,9 @@
     <div class="logo_header col-6 ">
         <a class=" logo_title navbar-brand" href="javascript:void(0)">Fizz</a>
     </div>
-    <div class="col-5 text-right row " *ngIf="profile != null" ngbDropdown #myDrop="ngbDropdown" placement="left"  >
+    <div class="col-5 text-right row "  ngbDropdown #myDrop="ngbDropdown" placement="left"  >
         <button class="drop_down_fizz" type="button" class="btn btn-1 btn-default"   id="dropdownManual" ngbDropdownAnchor  (click)="toggleDropDown(myDrop)">
-          {{profile.firstName}} {{profile.lastName}}
+          {{profile?.firstName}} {{profile?.lastName}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual" class="profile_dropdown">
           <button class="drop_down_button" (click)="open(classic1, 'modal_mini', 'sm')" ngbDropdownItem>Update Profile</button>
