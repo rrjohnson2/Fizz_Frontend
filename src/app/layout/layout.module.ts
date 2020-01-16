@@ -16,6 +16,9 @@ import { IdeaCardComponent } from './content/idea-card/idea-card.component';
 import { RetortCardComponent } from './content/retort-card/retort-card.component';
 import { MessageCardComponent } from './content/message-card/message-card.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { IdeaCardService } from './content/idea-card/idea-card.service';
+import { RetortCardService } from './content/retort-card/retort-card.service';
+import { DateagoPipe } from './pipe/dateago.pipe';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -27,7 +30,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ActivitiesComponent,
     IdeaCardComponent,
     RetortCardComponent,
-    MessageCardComponent
+    MessageCardComponent,
+    DateagoPipe
   ],
   imports: [
     CommonModule,
@@ -39,6 +43,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     SharedModule,
     SocketIoModule.forRoot(config)
   ],
-  providers:[RealtimeService,ActivitiesService,ContentService]
+  providers:[RealtimeService,ActivitiesService,ContentService,IdeaCardService,RetortCardService]
 })
 export class LayoutModule { }

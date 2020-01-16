@@ -88,7 +88,4 @@ export class GlobalService {
     this.profileSubject.next(null);
     this.username = null;
   }
-
-
-
 }

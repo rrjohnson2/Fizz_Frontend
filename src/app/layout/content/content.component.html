@@ -1,7 +1,7 @@
 <div class="container">
     <div *ngIf="ideas != null; empty" class="ideas_body">
         <div *ngFor="let idea of ideas">
-           <app-idea-card [idea]="idea"></app-idea-card>
+           <app-idea-card [username]="profile.username" [idea]="idea"></app-idea-card>
         </div>
     </div>
     <ng-template #empty>

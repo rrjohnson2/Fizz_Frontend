@@ -1,6 +1,6 @@
 <div class="card fizz_card ">
   <div class=" card-body fizz_card_body">
-    <div class="card-subtitle mb-2 text-muted text-center"> {{retort.creator.username}}</div>
+    <div class="card-subtitle mb-2 text-muted text-center"> {{retort.creator.username}} {{retort.timestamp | dateago}}</div>
     <p class=" card-text text-center">{{retort.content}}</p>
   </div>
   <div class="card-footer text-muted fizz_card_footer ">
@@ -12,7 +12,9 @@
         <div *ngFor="let msg of retort.messages">
           <app-message-card [message]="msg"></app-message-card>
         </div>
-        <input onkeydown="return event.key != 'Enter';"  class="form-control" placeholder="Write a Comment" type="text" (focus)="focus1=true" (blur)="focus1=false">
+        <form  role="form" [formGroup]="messageForm" (ngSubmit)=submit()>
+          <input formControlName="message" class="form-control" placeholder="Write a comment..." type="text" (focus)="focus1=true" (blur)="focus1=false">
+        </form>
       </mat-expansion-panel>
     </div>
   </div>

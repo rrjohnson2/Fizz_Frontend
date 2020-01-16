@@ -3,7 +3,7 @@
     <div class="cards-title">
       <div class="row">
         <div class="col-6">User: {{idea.creator.username}} </div>
-        <div class="col-6 text-right">{{time_since}}</div>
+        <div class="col-6 text-right">{{idea.timestamp | dateago}}</div>
         <div class="col-6"></div>
       </div>
     </div>
@@ -22,9 +22,11 @@
           <mat-panel-description>{{idea.retorts.length}} retorts</mat-panel-description>
         </mat-expansion-panel-header>
         <div *ngFor="let retort of idea.retorts">
-          <app-retort-card [idea_id]="idea.id" [retort]="retort"></app-retort-card>
+          <app-retort-card [username]="username" (messageEvent)="messageEvent($event)" [idea_id]="idea.id" [retort]="retort"></app-retort-card>
         </div>
-        <input onkeydown="return event.key != 'Enter';"  class="form-control" placeholder="Write a Retort" type="text" (focus)="focus1=true" (blur)="focus1=false">
+        <form  role="form" [formGroup]="retortForm" (ngSubmit)=submit()>
+          <input onkeydown="return event.key != 'Enter';" formControlName="retort" class="form-control" placeholder="Write a retort..." type="text" (focus)="focus1=true" (blur)="focus1=false">
+        </form>
       </mat-expansion-panel>
     </div>
   </div>
