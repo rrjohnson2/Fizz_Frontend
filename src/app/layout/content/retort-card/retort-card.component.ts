@@ -23,14 +23,7 @@ export class RetortCardComponent implements OnInit {
     this.createForm();
   }
   ngOnChange()
-  {
-    if(this.retort != null)
-    {
-      this.retort.messages = this.retort.messages.sort((a: any, b: any) =>
-        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    );
-    }
-  }
+  {}
   createForm()
   {
     this.messageForm = new FormGroup(
@@ -51,7 +44,7 @@ export class RetortCardComponent implements OnInit {
         comment:this.messageForm.get("message").value
       }
     }
-    this.retortCardService.retort(ticket).subscribe(
+    this.retortCardService.message(ticket).subscribe(
       data =>{
         this.messageForm.reset();
         this.messageEvent.emit(
@@ -62,6 +55,12 @@ export class RetortCardComponent implements OnInit {
         )
       }
     )
+  }
+
+  get sortedMessages()
+  {
+   return  this.retort.messages.sort((val1, val2)=> 
+      {return new Date(val1.timestamp).getTime() - new Date(val2.timestamp).getTime()});
   }
  
 }

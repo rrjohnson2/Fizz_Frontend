@@ -10,7 +10,7 @@ export class RetortCardService {
   retort_route ="commentRetort"
   constructor(private httpClient:HttpClient) { }
 
-  retort(ticket:Ticket)
+  message(ticket:Ticket)
   {
     return this.httpClient.post(backend_url+this.retort_route,ticket);
   }

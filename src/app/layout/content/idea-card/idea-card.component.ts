@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Idea } from 'src/app/models/idea';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Message } from 'src/app/models/message';
+import { IdeaCardService } from './idea-card.service';
+import { Ticket } from 'src/app/interfaces/ticket';
 
 @Component({
   selector: 'app-idea-card',
@@ -13,7 +15,7 @@ export class IdeaCardComponent implements OnInit {
   @Input() username:string;
   today:Date = new Date();
   retortForm:FormGroup
-  constructor() { }
+  constructor(private idea_card_service:IdeaCardService) { }
 
   ngOnInit() {
     this.createForm();
@@ -32,7 +34,28 @@ export class IdeaCardComponent implements OnInit {
   } 
   submit()
   {
-
+      var ticket:Ticket={
+        customer:this.username,
+        data:{
+          idea:this.idea.id,
+          retort:this.retortForm.get("retort").value
+        }
+      }
+      this.idea_card_service.retort(ticket).subscribe(
+        
+          (data) =>
+          {
+            console.log("working up to here");
+            this.retortForm.reset();
+            this.addRetortToIdea(data);
+          }
+        
+      )
+     
+  }
+  addRetortToIdea(data: any) {
+    console.log(data)
+    this.idea.retorts.push(data.data)
   }
 
   messageEvent(event)
@@ -46,9 +69,10 @@ export class IdeaCardComponent implements OnInit {
 
   }
 
-  get time_since()
+  get sortedRetorts()
   {
-    return "16hrs"
+   return  this.idea.retorts.sort((val1, val2)=> 
+      {return new Date(val1.timestamp).getTime() - new Date(val2.timestamp).getTime()});
   }
 
 }

@@ -21,11 +21,11 @@
         <mat-expansion-panel-header>
           <mat-panel-description>{{idea.retorts.length}} retorts</mat-panel-description>
         </mat-expansion-panel-header>
-        <div *ngFor="let retort of idea.retorts">
+        <div *ngFor="let retort of sortedRetorts">
           <app-retort-card [username]="username" (messageEvent)="messageEvent($event)" [idea_id]="idea.id" [retort]="retort"></app-retort-card>
         </div>
         <form  role="form" [formGroup]="retortForm" (ngSubmit)=submit()>
-          <input onkeydown="return event.key != 'Enter';" formControlName="retort" class="form-control" placeholder="Write a retort..." type="text" (focus)="focus1=true" (blur)="focus1=false">
+          <input  formControlName="retort" class="form-control" placeholder="Write a retort..." type="text" (focus)="focus1=true" (blur)="focus1=false">
         </form>
       </mat-expansion-panel>
     </div>

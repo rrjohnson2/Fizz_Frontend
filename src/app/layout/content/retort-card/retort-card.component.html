@@ -9,7 +9,7 @@
         <mat-expansion-panel-header>
           <mat-panel-description>{{retort.messages.length}} comments</mat-panel-description>
         </mat-expansion-panel-header>
-        <div *ngFor="let msg of retort.messages">
+        <div *ngFor="let msg of sortedMessages">
           <app-message-card [message]="msg"></app-message-card>
         </div>
         <form  role="form" [formGroup]="messageForm" (ngSubmit)=submit()>
