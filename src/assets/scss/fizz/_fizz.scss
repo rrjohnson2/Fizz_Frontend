@@ -1,8 +1,17 @@
 
 $navbar-height : 3.875rem;
+::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $white; 
+  }
+   
 .layout{
      background-color: $gray-100;
-     min-height: 100vh;
+     height: 100%;
 }
 .fizz_navbar{
     position: fixed;
@@ -47,10 +56,11 @@ $navbar-height : 3.875rem;
 }
 
 .notice_card{
-    width: 50vh !important;
+    width: 75vh !important;
 }
 .ideas_body{
-   // min-height: 100rem - 2*($navbar-padding-y)+ $navbar-height;
+   overflow-y: auto;
+   height: 90vh;
 }
 .fizz_card
 {
