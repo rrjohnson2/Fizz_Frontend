@@ -59,8 +59,8 @@ $navbar-height : 3.875rem;
     width: 75vh !important;
 }
 .ideas_body{
-   overflow-y: auto;
-   height: 90vh;
+   overflow-y: scroll;
+   height: 85vh;
 }
 .fizz_card
 {

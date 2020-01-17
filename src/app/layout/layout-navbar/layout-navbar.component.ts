@@ -26,11 +26,6 @@ export class LayoutNavbarComponent implements OnInit {
   updateForm:FormGroup;
   updateTicket:Ticket;
 
-  ngOnChanges()
-  {
-    console.log(this.notifications);
-  }
-
   ngOnInit() {
     this.createForm();
   }

@@ -46,7 +46,7 @@ export class ContentComponent implements OnInit {
     {
       return this.showIdea(event.data);
     }
-    
+    console.log(event)
     return this.idea_cards.find((item: IdeaCardComponent, index: number, array: IdeaCardComponent[]) => 
     item.idea.id ==event.idea_id).showNotice(event);
   }
@@ -57,7 +57,7 @@ export class ContentComponent implements OnInit {
     {
       this.ideas.push(data);
     }
-    return this.uiService.bringInView(data,`ideas_body`)
+    return this.uiService.bringInView(data.id,`ideas_body`)
   }
   
 

@@ -6,6 +6,7 @@ import { Ticket } from 'src/app/interfaces/ticket';
 import { Message } from 'src/app/models/message';
 import { GlobalService } from 'src/app/services/global.service';
 import { Notice_Actions, Notice } from 'src/app/models/notice';
+import { UIService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-retort-card',
@@ -19,7 +20,8 @@ export class RetortCardComponent implements OnInit {
   @Input() username: string;
   @Output() messageEvent: EventEmitter<any> = new EventEmitter<any>();
   messageForm:FormGroup;
-  constructor(private retortCardService:RetortCardService,private gloablService:GlobalService) { }
+  expan: boolean  =false;
+  constructor(private retortCardService:RetortCardService,private uiService:UIService) { }
 
   ngOnInit() {
     this.createForm();
@@ -66,7 +68,13 @@ export class RetortCardComponent implements OnInit {
     }
   }
   showComment(data:Message) {
-    throw new Error("Method not implemented.");
+    if(this.retort.messages.find( ret => ret.id==data.id) == undefined)
+    {
+      this.retort.messages.push(data);
+    }
+    
+    this.expan = true;
+     return this.uiService.bringInView(this.idea_id,`ideas_body`)
   }
 
   get sortedMessages()

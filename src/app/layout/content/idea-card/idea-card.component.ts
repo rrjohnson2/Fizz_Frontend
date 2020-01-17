@@ -17,6 +17,7 @@ export class IdeaCardComponent implements OnInit {
 
   @Input() idea:Idea;
   @Input() username:string;
+           expan:boolean = false;
   @ViewChildren(RetortCardComponent) retort_cards:QueryList<RetortCardComponent>;
   today:Date = new Date();
   retortForm:FormGroup
@@ -77,17 +78,30 @@ export class IdeaCardComponent implements OnInit {
     {
       return this.showRetort(event.data);
     }
+    else{
+      this.expan = true;
+    }
+
+    if(event.action == Notice_Actions.RATING)
+    {
+      this.addRating(event);
+    }
     
     return this.retort_cards.find((item: RetortCardComponent, index: number, array: RetortCardComponent[]) => 
     item.retort.id ==event.retort_id).showNotice(event);
   }
   showRetort(data: any) {
-    throw new Error("Method not implemented.");
+    if(this.idea.retorts.find( ret => ret.id==data.id) == undefined)
+    {
+      this.idea.retorts.push(data);
+    }
+    
+    this.expan = true;
+    return this.uiService.bringInView(this.idea.id,`ideas_body`)
   }
 
   vote(vote_type)
   {
-    console.log("here")
     var ticket:Ticket = {
       customer: this.username,
       data:{
@@ -102,8 +116,26 @@ export class IdeaCardComponent implements OnInit {
     );
   }
   addRating(data: any) {
-    console.log(this.idea)
-    this.idea.ratings.push(data.data);
+    for (const key in this.idea.ratings) {
+      if(this.idea.ratings[key].id == data.data.id) 
+      {
+        this.idea.ratings[key].vote = data.data.vote;
+        return this.recalcVote();
+      }
+    }
+    this.idea.ratings.push(data.data); 
+    return this.recalcVote();
+  }
+  recalcVote() {
+    var down = 0;
+    var up = 0;
+    for (const key in this.idea.ratings) {
+      if(this.idea.ratings[key].vote == "UP") up++;
+      else down++;
+    }
+
+    this.idea.upVotes = up;
+    this.idea.downVotes = down;
   }
 
   get sortedRetorts()

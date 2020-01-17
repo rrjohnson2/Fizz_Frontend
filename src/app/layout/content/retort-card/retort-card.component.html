@@ -5,7 +5,7 @@
   </div>
   <div class="card-footer text-muted fizz_card_footer ">
     <div class="row">
-      <mat-expansion-panel id="message_body" class="col-12 text-center fizz_expansion_panel">
+      <mat-expansion-panel [expanded] = "expan" id="message_body" class="col-12 text-center fizz_expansion_panel">
         <mat-expansion-panel-header>
           <mat-panel-description>{{retort.messages.length}} comments</mat-panel-description>
         </mat-expansion-panel-header>

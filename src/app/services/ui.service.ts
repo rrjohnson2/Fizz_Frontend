@@ -41,16 +41,22 @@ private getDismissReason(reason: any): string {
   }
 }
 
-bringInView(data: any,parent_id) {
-    const el: HTMLElement|null = document.getElementById(`${data.id}`);
+bringInView(child_id,parent_id) {
+    console.log(child_id);
+    const el: HTMLElement|null = document.getElementById(child_id);
     const parent: HTMLElement|null = document.getElementById(parent_id);
     var pos = 0
     if(el !=null) pos =el.offsetTop;
+    if(pos >= parent.scrollHeight && pos !=0 ) pos = parent.scrollHeight;
     parent.scroll({
-      top: pos,
-      left: 0,
-      behavior: 'smooth'
+        top: pos,
+        left: 0,
+        behavior: 'smooth'
     })
+    
+    
+    console.log(pos)
+    console.log(parent.offsetHeight)
   }
 
 }

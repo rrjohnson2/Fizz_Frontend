@@ -16,8 +16,9 @@ export class Notice {
 
 }
 
-export enum Notice_Actions{
-    FOCUS = "FOCUS",
-    RETORT = "RETORT",
-    COMMENT = "COMMENT"
+export enum Notice_Actions {
+  FOCUS = "FOCUS",
+  RETORT = "RETORT",
+  COMMENT = "COMMENT",
+  RATING = "RATING"
 }
