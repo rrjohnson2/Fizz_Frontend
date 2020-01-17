@@ -5,6 +5,7 @@ import { RetortCardService } from './retort-card.service';
 import { Ticket } from 'src/app/interfaces/ticket';
 import { Message } from 'src/app/models/message';
 import { GlobalService } from 'src/app/services/global.service';
+import { Notice_Actions, Notice } from 'src/app/models/notice';
 
 @Component({
   selector: 'app-retort-card',
@@ -12,6 +13,7 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./retort-card.component.css']
 })
 export class RetortCardComponent implements OnInit {
+
   @Input() idea_id:number;
   @Input() retort:Retort;
   @Input() username: string;
@@ -55,6 +57,16 @@ export class RetortCardComponent implements OnInit {
         )
       }
     )
+  }
+
+  showNotice(event:Notice) {
+    if(event.action == Notice_Actions.COMMENT)
+    {
+      return this.showComment(event.data);
+    }
+  }
+  showComment(data:Message) {
+    throw new Error("Method not implemented.");
   }
 
   get sortedMessages()

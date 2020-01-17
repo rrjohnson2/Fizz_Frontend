@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,OnChanges } from '@angular/core';
 import { Profile } from 'src/app/models/profile';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
@@ -26,6 +26,10 @@ export class LayoutNavbarComponent implements OnInit {
   updateForm:FormGroup;
   updateTicket:Ticket;
 
+  ngOnChanges()
+  {
+    console.log(this.notifications);
+  }
 
   ngOnInit() {
     this.createForm();

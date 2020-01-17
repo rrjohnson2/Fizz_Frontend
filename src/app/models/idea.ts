@@ -9,7 +9,7 @@ export class Idea {
     downVotes: number;
     focus: Focus[];
     id: number;
-    rating: Rating;
+    ratings: Rating[];
     retorts: Retort[];
     timestamp: Date;
     title: string;
@@ -21,7 +21,7 @@ export class Idea {
         downVotes: number,
         focus: Focus[],
         id: number,
-        rating: Rating,
+        ratings: Rating[],
         retorts: Retort[],
         timestamp: Date,
         title: string,
@@ -32,7 +32,7 @@ export class Idea {
         this.downVotes =  downVotes;
         this.focus = focus ;
         this.id = id;
-        this.rating = rating;
+        this.ratings = ratings;
         this.retorts = retorts;
         this.timestamp = timestamp;
         this.title = title;

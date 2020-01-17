@@ -1,11 +1,12 @@
-import { Component, OnInit, EventEmitter, Output, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { AlertTicket } from 'src/app/interfaces/alert-ticket';
 import { Profile } from 'src/app/models/profile';
 import { ContentService } from './content.service';
 import { Idea } from 'src/app/models/idea';
 import { Notice, Notice_Actions } from 'src/app/models/notice';
-import { Actions } from 'src/app/constants/app.constants';
 import { UIService } from 'src/app/services/ui.service';
+import { IdeaCardComponent } from './idea-card/idea-card.component';
+
 
 @Component({
   selector: 'app-content',
@@ -17,6 +18,7 @@ export class ContentComponent implements OnInit {
   @Input()  profile:Profile;
   @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
             ideas:Idea[];
+  @ViewChildren(IdeaCardComponent) idea_cards:QueryList<IdeaCardComponent>;
   constructor(private contentService:ContentService,private uiService:UIService) {
    
    }
@@ -28,7 +30,6 @@ export class ContentComponent implements OnInit {
   {
     if(this.profile != null)
     {
-      
       this.contentService.getIdeas(this.profile.preferences).subscribe(
         data =>{
           this.populate_ideas(data);
@@ -41,11 +42,13 @@ export class ContentComponent implements OnInit {
   }
 
   showNotice(event: Notice) {
-    console.log(Notice_Actions.FOCUS);
     if(event.action == Notice_Actions.FOCUS)
     {
       return this.showIdea(event.data);
     }
+    
+    return this.idea_cards.find((item: IdeaCardComponent, index: number, array: IdeaCardComponent[]) => 
+    item.idea.id ==event.idea_id).showNotice(event);
   }
   showIdea(data:Idea) {
     
@@ -54,19 +57,9 @@ export class ContentComponent implements OnInit {
     {
       this.ideas.push(data);
     }
-    return this.bringInView(data)
+    return this.uiService.bringInView(data,`ideas_body`)
   }
-  bringInView(data: Idea) {
-    const el: HTMLElement|null = document.getElementById(`${data.id}`);
-    const parent: HTMLElement|null = document.getElementById(`ideas_body`);
-    var pos = 0
-    if(el !=null) pos =el.offsetTop;
-    parent.scroll({
-      top: pos,
-      left: 0,
-      behavior: 'smooth'
-    })
-  }
+  
 
   get Ideas()
   {

@@ -5,12 +5,12 @@
   </div>
   <div class="card-footer text-muted fizz_card_footer ">
     <div class="row">
-      <mat-expansion-panel class="col-12 text-center fizz_expansion_panel">
+      <mat-expansion-panel id="message_body" class="col-12 text-center fizz_expansion_panel">
         <mat-expansion-panel-header>
           <mat-panel-description>{{retort.messages.length}} comments</mat-panel-description>
         </mat-expansion-panel-header>
-        <div *ngFor="let msg of sortedMessages">
-          <app-message-card [message]="msg"></app-message-card>
+        <div  *ngFor="let msg of sortedMessages">
+          <app-message-card  id="{{msg.id}}" [message]="msg"></app-message-card>
         </div>
         <form  role="form" [formGroup]="messageForm" (ngSubmit)=submit()>
           <input formControlName="message" class="form-control" placeholder="Write a comment..." type="text" (focus)="focus1=true" (blur)="focus1=false">

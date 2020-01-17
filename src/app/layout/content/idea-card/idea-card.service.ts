@@ -7,12 +7,17 @@ import { backend_url } from 'src/app/constants/app.constants';
   providedIn: 'root'
 })
 export class IdeaCardService {
+  
 
   retort_url ="retortIdea"
+  vote_url ="rateIdea"
   constructor(private httpClient:HttpClient) { }
 
   retort(ticket:Ticket)
   {
     return this.httpClient.post(backend_url+this.retort_url,ticket);
+  }
+  vote(ticket: Ticket) {
+    return this.httpClient.post(backend_url+this.vote_url,ticket);
   }
 }

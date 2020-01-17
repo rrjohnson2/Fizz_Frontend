@@ -41,4 +41,16 @@ private getDismissReason(reason: any): string {
   }
 }
 
+bringInView(data: any,parent_id) {
+    const el: HTMLElement|null = document.getElementById(`${data.id}`);
+    const parent: HTMLElement|null = document.getElementById(parent_id);
+    var pos = 0
+    if(el !=null) pos =el.offsetTop;
+    parent.scroll({
+      top: pos,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+
 }

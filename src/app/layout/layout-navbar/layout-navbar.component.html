@@ -23,15 +23,17 @@
           </a>
           <div ngbDropdownMenu aria-labelledby="dropdownManual" class="notice_dropdown">
             <div *ngFor="let notice of notifications" class="card notice_card">
-              <ng-template *ngIf="notice.action == COMMENT; else retort">
-                // card for comment
+                <button *ngIf="notice.action == 'COMMENT'; else retort" class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
+                    {{notice.data.timestamp|dateago}} ~ {{notice.data.creator.username| titlecase}} : commented on a retort
+                 </button>
+              <ng-template #retort >
+                <button *ngIf="notice.action == 'RETORT'; else focus" class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
+                  {{notice.data.timestamp|dateago}} ~ {{notice.data.creator.username| titlecase}} : retorted an idea of yours
+                </button>
               </ng-template>
-              <ng-template #retort *ngIf="notice.action == RETORT; else focus">
-                // card for retort
-              </ng-template>
-              <ng-template #focus>
-                <button  class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
-                 <div> {{notice.data.title}}: Idea Shared In 
+              <ng-template #focus >
+                <button *ngIf="notice?.action == 'FOCUS'; else rating" class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
+                 <div> {{notice.data.timestamp|dateago}} {{notice.data.title}}: Idea Shared In 
                   <span *ngFor="let foc of notice.data.focus">
                       <span *ngFor="let pref of profile.preferences">
                         <span *ngIf="foc.category == pref.category">
@@ -40,10 +42,13 @@
                       </span>
                     </span> 
                   </div>
-
                 </button>
               </ng-template>
-              
+              <ng-template #rating >
+                <button *ngIf="notice.action == 'RATING'" class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
+                  {{notice.data.vote}} VOTE on your idea
+                </button>
+              </ng-template>
             </div>
           </div>
         </div>
