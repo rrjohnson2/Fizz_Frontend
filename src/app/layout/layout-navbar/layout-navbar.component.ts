@@ -19,6 +19,7 @@ export class LayoutNavbarComponent implements OnInit {
   @Input() public profile:Profile;
   @Input() public notifications:Notice[];
   @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
+  @Output() notice_event: EventEmitter<Notice> = new EventEmitter<Notice>();
 
   autoCloseBool=false;
   closeResult: string;
@@ -126,7 +127,8 @@ public update()
 }
 
 public showNotice(notice)
-  { console.log (this.profile);
-     console.log(notice);
+  { 
+     this.notice_event.emit(notice);
+     this.notifications.splice(this.notifications.indexOf(notice),1);
   }
 }

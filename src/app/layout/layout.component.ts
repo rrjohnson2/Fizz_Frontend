@@ -8,6 +8,7 @@ import { AlertTicket } from '../interfaces/alert-ticket';
 import { RealtimeService } from '../services/realtime.service';
 import { Actions } from '../constants/app.constants';
 import { Notice } from '../models/notice';
+import { ContentComponent } from './content/content.component';
 
 @Component({
   selector: 'app-layout',
@@ -19,6 +20,7 @@ export class LayoutComponent implements OnInit {
   private profile:Observable<Profile>;
   private notifications:Observable<Notice[]>;
   @ViewChild(AlertComponent) alert: AlertComponent;
+  @ViewChild(ContentComponent) content_comp: ContentComponent;
 
   constructor(
     private globalservice:GlobalService,
@@ -51,5 +53,9 @@ export class LayoutComponent implements OnInit {
   public alerty(alert_ticket:AlertTicket)
   {
     this.globalservice.notify(this.alert,alert_ticket);
+  }
+  public showNotice(event:Notice)
+  {
+    this.content_comp.showNotice(event);
   }
 }

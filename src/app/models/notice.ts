@@ -1,6 +1,6 @@
 export class Notice {
     username:string;
-    action:Actions
+    action:Notice_Actions
     data:any
 
     constructor(data)
@@ -12,6 +12,8 @@ export class Notice {
 
 }
 
-enum Actions{
-    FOCUS
+export enum Notice_Actions{
+    FOCUS = "FOCUS",
+    RETORT = "RETORT",
+    COMMENT = "COMMENT"
 }

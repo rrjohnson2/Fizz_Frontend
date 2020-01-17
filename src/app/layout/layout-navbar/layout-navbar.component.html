@@ -17,7 +17,7 @@
         <img id="notice_icon" src="./assets/img/icons/common/notice_empty.png" alt="unfilled notice">
       </div>
       <ng-template #filled>
-        <div ngbDropdown #noticeDrop="ngbDropdown" placement="bottom">
+        <div ngbDropdown #noticeDrop="ngbDropdown" placement="right">
           <a class="nav-link nav-link-icon drop_down_fizz" ngbDropdownAnchor (click)="toggleDropDown(noticeDrop)">
             <img id="notice_icon" src="./assets/img/icons/common/notice_filled.png">
           </a>
@@ -31,7 +31,7 @@
               </ng-template>
               <ng-template #focus>
                 <button  class="drop_down_button " ngbDropdownItem (click)="showNotice(notice)">
-                 <div> Idea Shared In 
+                 <div> {{notice.data.title}}: Idea Shared In 
                   <span *ngFor="let foc of notice.data.focus">
                       <span *ngFor="let pref of profile.preferences">
                         <span *ngIf="foc.category == pref.category">

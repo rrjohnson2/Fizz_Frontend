@@ -5,6 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   providedIn: 'root'
 })
 export class UIService {
+
   private closeResult:string;
   
   constructor(private modalService:NgbModal) { }
@@ -39,4 +40,5 @@ private getDismissReason(reason: any): string {
       return  `with: ${reason}`;
   }
 }
+
 }

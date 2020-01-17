@@ -45,7 +45,6 @@ export class IdeaCardComponent implements OnInit {
         
           (data) =>
           {
-            console.log("working up to here");
             this.retortForm.reset();
             this.addRetortToIdea(data);
           }
@@ -54,7 +53,6 @@ export class IdeaCardComponent implements OnInit {
      
   }
   addRetortToIdea(data: any) {
-    console.log(data)
     this.idea.retorts.push(data.data)
   }
 
