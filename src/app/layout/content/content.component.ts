@@ -48,7 +48,7 @@ export class ContentComponent implements OnInit {
   }
 
   showNotice(event: Notice) {
-    if(event.action == Notice_Actions.FOCUS)
+    if(event.action == Notice_Actions.FOCUS || event.action == Notice_Actions.RATING)
     {
       return this.showIdea(event.data);
     }
