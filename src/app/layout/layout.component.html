@@ -8,7 +8,7 @@
           <app-activities (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-activities>
         </div>
         <div class="col-8 fizz_col">
-          <app-content (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-content>
+          <app-content [ideas]="ideas_obs |async" (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-content>
         </div>
       </div>
     </div>
