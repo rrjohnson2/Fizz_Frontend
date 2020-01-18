@@ -42,7 +42,6 @@ private getDismissReason(reason: any): string {
 }
 
 bringInView(child_id,parent_id) {
-    console.log(child_id);
     const el: HTMLElement|null = document.getElementById(child_id);
     const parent: HTMLElement|null = document.getElementById(parent_id);
     var pos = 0
@@ -54,9 +53,6 @@ bringInView(child_id,parent_id) {
         behavior: 'smooth'
     })
     
-    
-    console.log(pos)
-    console.log(parent.offsetHeight)
   }
 
 }

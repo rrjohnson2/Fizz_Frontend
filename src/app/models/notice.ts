@@ -4,6 +4,7 @@ export class Notice {
     data:any
     idea_id: number;
     retort_id: number;
+    checked:boolean = false
 
     constructor(data)
     {
@@ -12,6 +13,7 @@ export class Notice {
         this.username = data.username;
         this.idea_id = data.idea_id
         this.retort_id = data.retort_id;
+        this.checked = false;
     }
 
 }

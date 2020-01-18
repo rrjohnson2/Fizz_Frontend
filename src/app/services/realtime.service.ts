@@ -26,10 +26,6 @@ export class RealtimeService {
     this.notice.push(new Notice(data));
     this.noticfications.next(this.notice);
    }
-   removeNotice(id)
-   {
-
-   }
    
 
 }

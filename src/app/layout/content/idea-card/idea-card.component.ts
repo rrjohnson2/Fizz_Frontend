@@ -15,6 +15,7 @@ import { UIService } from 'src/app/services/ui.service';
 })
 export class IdeaCardComponent implements OnInit {
 
+
   @Input() idea:Idea;
   @Input() username:string;
            expan:boolean = false;
@@ -74,30 +75,17 @@ export class IdeaCardComponent implements OnInit {
   }
 
   showNotice(event:Notice) {
+    this.expan = true;
     if(event.action == Notice_Actions.RETORT)
-    {
-      return this.showRetort(event.data);
+    {  
+     
+    return this.uiService.bringInView(this.idea.id,`ideas_body`)
     }
-    else{
-      this.expan = true;
-    }
-
-    if(event.action == Notice_Actions.RATING)
-    {
-      this.addRating(event);
-    }
-    
     return this.retort_cards.find((item: RetortCardComponent, index: number, array: RetortCardComponent[]) => 
     item.retort.id ==event.retort_id).showNotice(event);
   }
   showRetort(data: any) {
-    if(this.idea.retorts.find( ret => ret.id==data.id) == undefined)
-    {
-      this.idea.retorts.push(data);
-    }
-    
     this.expan = true;
-    return this.uiService.bringInView(this.idea.id,`ideas_body`)
   }
 
   vote(vote_type)
@@ -119,25 +107,28 @@ export class IdeaCardComponent implements OnInit {
     for (const key in this.idea.ratings) {
       if(this.idea.ratings[key].id == data.data.id) 
       {
-        this.idea.ratings[key].vote = data.data.vote;
-        return this.recalcVote();
+        return this.idea.ratings[key].vote = data.data.vote;
+        
       }
     }
     this.idea.ratings.push(data.data); 
-    return this.recalcVote();
   }
-  recalcVote() {
-    var down = 0;
+  get upVotes()
+  { 
     var up = 0;
     for (const key in this.idea.ratings) {
       if(this.idea.ratings[key].vote == "UP") up++;
-      else down++;
     }
-
-    this.idea.upVotes = up;
-    this.idea.downVotes = down;
+   return up;
   }
-
+  get downVotes()
+  {
+    var down = 0;
+    for (const key in this.idea.ratings) {
+      if(this.idea.ratings[key].vote == "DOWN") down++;
+    }
+    return down;
+  }
   get sortedRetorts()
   {
    return  this.idea.retorts.sort((val1, val2)=> 

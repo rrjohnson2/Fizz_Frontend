@@ -1,6 +1,6 @@
 <div class="container">
     <div id="ideas_body" *ngIf="ideas != null; empty" class="ideas_body">
-        <div *ngFor="let idea of Ideas">
+        <div *ngFor="let idea of Ideas |async">
            <app-idea-card id="{{idea.id}}" [username]="profile.username" [idea]="idea"></app-idea-card>
         </div>
     </div>

@@ -64,18 +64,11 @@ export class RetortCardComponent implements OnInit {
   showNotice(event:Notice) {
     if(event.action == Notice_Actions.COMMENT)
     {
-      return this.showComment(event.data);
+      this.expan= true;
+      return this.uiService.bringInView(this.idea_id,`ideas_body`)
     }
   }
-  showComment(data:Message) {
-    if(this.retort.messages.find( ret => ret.id==data.id) == undefined)
-    {
-      this.retort.messages.push(data);
-    }
-    
-    this.expan = true;
-     return this.uiService.bringInView(this.idea_id,`ideas_body`)
-  }
+ 
 
   get sortedMessages()
   {

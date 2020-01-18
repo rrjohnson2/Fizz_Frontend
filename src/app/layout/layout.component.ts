@@ -30,6 +30,13 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
     this.setupProfile();
     this.notifications = this.realTime.noticfications.asObservable();
+    this.notifications.subscribe((data)=>{
+     
+      if(this.content_comp.ideas != undefined)
+      {
+        this.content_comp.updateOrAdd(data)
+      }
+    });
   }
 
   private setupProfile()

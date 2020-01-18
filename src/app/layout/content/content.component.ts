@@ -6,6 +6,8 @@ import { Idea } from 'src/app/models/idea';
 import { Notice, Notice_Actions } from 'src/app/models/notice';
 import { UIService } from 'src/app/services/ui.service';
 import { IdeaCardComponent } from './idea-card/idea-card.component';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Retort } from 'src/app/models/retort';
 
 
 @Component({
@@ -14,17 +16,20 @@ import { IdeaCardComponent } from './idea-card/idea-card.component';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
+
   
   @Input()  profile:Profile;
   @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
             ideas:Idea[];
+            ideas_behav:BehaviorSubject<Idea[]> = new BehaviorSubject<Idea[]>(this.ideas);
+            ideas_obs:Observable<Idea[]>
   @ViewChildren(IdeaCardComponent) idea_cards:QueryList<IdeaCardComponent>;
   constructor(private contentService:ContentService,private uiService:UIService) {
    
    }
 
   ngOnInit() {
-   
+   this.ideas_obs = this.ideas_behav.asObservable();
   }
   ngOnChanges()
   {
@@ -39,6 +44,7 @@ export class ContentComponent implements OnInit {
   }
   populate_ideas(data) {
     this.ideas = data.data
+    this.ideas_behav.next(this.ideas);
   }
 
   showNotice(event: Notice) {
@@ -46,25 +52,60 @@ export class ContentComponent implements OnInit {
     {
       return this.showIdea(event.data);
     }
-    console.log(event)
     return this.idea_cards.find((item: IdeaCardComponent, index: number, array: IdeaCardComponent[]) => 
     item.idea.id ==event.idea_id).showNotice(event);
   }
   showIdea(data:Idea) {
     
+    return this.uiService.bringInView(data.id,`ideas_body`);
+  }
+  updateOrAdd(data: Notice[]) {
     
-    if(this.ideas.find( idea => idea.id==data.id) == undefined)
+    // tslint:disable-next-line: forin
+    for(const key in data)
     {
-      this.ideas.push(data);
+      var notice:Notice = data[key];
+      if(!notice.checked)
+      {
+        
+        if(notice.action == Notice_Actions.FOCUS)
+        {
+          // tslint:disable-next-line: triple-equals
+          if(this.ideas != undefined && this.ideas.find( idea => idea.id==notice.data.id) == undefined && notice.action == Notice_Actions.FOCUS)
+          {
+          
+            this.ideas.push(notice.data);
+          }
+        } else{
+          var idea :Idea = this.ideas.find( idea => idea.id == notice.idea_id);
+
+          if(notice.action == Notice_Actions.RETORT){
+            var retort = idea.retorts.find(ret => ret.id == notice.data.id);
+            if(retort == undefined) idea.retorts.push(notice.data);
+          }
+          else if (notice.action === Notice_Actions.RATING)
+          { 
+            var rate = idea.ratings.find(rate => rate.id == notice.data.id);
+            if(rate == undefined) idea.ratings.push(notice.data);
+            else rate.vote = notice.data.vote;
+          }
+          else if (notice.action === Notice_Actions.COMMENT)
+          { 
+            var retort = idea.retorts.find(ret => ret.id == notice.retort_id);
+            var message = retort.messages.find( msg => msg.id == notice.data.id)
+            if(message == undefined) retort.messages.push(notice.data);
+            else message.content = notice.data.content;
+          }
+        }
+          
+         notice.checked = true;
+      }
     }
-    return this.uiService.bringInView(data.id,`ideas_body`)
   }
   
-
   get Ideas()
   {
-    return  this.ideas.sort((val1, val2)=> 
-    {return new Date(val2.timestamp).getTime() - new Date(val1.timestamp).getTime()});
+    return  this.ideas_obs;
   }
 
 }
