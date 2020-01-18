@@ -53,18 +53,7 @@ export class LayoutComponent implements OnInit {
         this.globalservice.populateProfile(data);
         this.profile = this.globalservice.profileSubject.asObservable();
         this.ideas_obs = this.ideas_behav.asObservable();
-        this.profile.subscribe(
-          data=>
-          {
-            this.layoutService.getIdeas(data.preferences).subscribe(
-              data =>
-              {
-                console.log(data)
-                this.ideas = data.data;
-                this.ideas_behav.next(this.ideas);
-              });
-          }
-        );
+        this.waitOnProfileForIdeas();
         this.realTime.joinRealTimeServer();
       },
       error =>
@@ -73,6 +62,19 @@ export class LayoutComponent implements OnInit {
       }
     
       
+    );
+  }
+  waitOnProfileForIdeas() {
+    this.profile.subscribe(
+      data=>
+      {
+        this.layoutService.getIdeas(data.preferences).subscribe(
+          data =>
+          {
+            this.ideas = data.data;
+            this.ideas_behav.next(this.ideas);
+          });
+      }
     );
   }
 
