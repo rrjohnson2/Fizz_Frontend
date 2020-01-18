@@ -9,6 +9,7 @@ import { ShareIdeaData } from 'src/app/interfaces/shareIdeaData';
 import { Focus } from 'src/app/models/focus';
 import { GlobalService } from 'src/app/services/global.service';
 import { Actions } from 'src/app/constants/app.constants';
+import { Idea } from 'src/app/models/idea';
 
 @Component({
   selector: 'app-activities',
@@ -22,6 +23,7 @@ export class ActivitiesComponent implements OnInit {
   focuses = []
 
   @Output() alert_ticket: EventEmitter<AlertTicket> = new EventEmitter<AlertTicket>();
+  @Output() idea_event: EventEmitter<Idea> = new EventEmitter<Idea>();
   @Input() public profile:Profile;
 
 
@@ -86,6 +88,7 @@ export class ActivitiesComponent implements OnInit {
         this.ideaForm.reset();
         this.createForm();
         this.uiService.dismissAll();
+        this.idea_event.emit(message.data);
         this.alert_ticket.emit({
           msg: message.data.message,
           action_attempted: Actions.shareIdea,

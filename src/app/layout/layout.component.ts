@@ -64,6 +64,11 @@ export class LayoutComponent implements OnInit {
       
     );
   }
+  addIdea(event:Idea)
+  {
+    this.ideas.push(event);
+    this.ideas_behav.next(this.ideas);
+  }
   waitOnProfileForIdeas() {
     this.profile.subscribe(
       data=>

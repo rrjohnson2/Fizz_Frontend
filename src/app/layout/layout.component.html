@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row fizz_body ">
         <div class="col-4 fizz_col">
-          <app-activities (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-activities>
+          <app-activities (idea_event)="addIdea($event)" (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-activities>
         </div>
         <div class="col-8 fizz_col">
           <app-content [ideas]="ideas_obs |async" (alert_ticket)="alerty($event)" [profile]=" profile | async "></app-content>
