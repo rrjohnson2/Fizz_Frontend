@@ -6,9 +6,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UIService {
 
+
   private closeResult:string;
   
   constructor(private modalService:NgbModal) { }
+
+  dismissAll() {
+   this.modalService.dismissAll();
+        }
 
   open(content, type, modalDimension) {
     if (modalDimension === 'sm' && type === 'modal_mini') {

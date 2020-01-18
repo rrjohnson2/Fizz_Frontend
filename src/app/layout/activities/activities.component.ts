@@ -6,9 +6,7 @@ import { Profile } from 'src/app/models/profile';
 import { ActivitiesService } from './activities.service';
 import { Ticket } from 'src/app/interfaces/ticket';
 import { ShareIdeaData } from 'src/app/interfaces/shareIdeaData';
-import { ThrowStmt } from '@angular/compiler';
 import { Focus } from 'src/app/models/focus';
-import { error } from 'util';
 import { GlobalService } from 'src/app/services/global.service';
 import { Actions } from 'src/app/constants/app.constants';
 
@@ -85,13 +83,17 @@ export class ActivitiesComponent implements OnInit {
       data =>
       {
         var message:any = data;
+        this.ideaForm.reset();
+        this.createForm();
+        this.uiService.dismissAll();
         this.alert_ticket.emit({
-          msg: message.data.message.toString(),
+          msg: message.data.message,
           action_attempted: Actions.shareIdea,
           type: "success"
-        })
+        });
       },
       error =>{
+        this.uiService.dismissAll();
         this.alert_ticket.emit({
           msg:error.error.message,
           action_attempted: Actions.shareIdea,

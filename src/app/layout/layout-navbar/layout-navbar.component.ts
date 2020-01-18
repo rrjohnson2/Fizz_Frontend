@@ -113,6 +113,7 @@ public update()
       {
           this.globalService.populateProfile(data);
           this.updateForm.reset();
+          this.uiService.dismissAll();
       },
       error =>{
         this.alert_ticket.emit({
