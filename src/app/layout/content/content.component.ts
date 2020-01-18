@@ -105,7 +105,8 @@ export class ContentComponent implements OnInit {
   
   get Ideas()
   {
-    return  this.ideas_obs;
+    return    this.ideas.sort((val1, val2)=> 
+    {return new Date(val2.timestamp).getTime() - new Date(val1.timestamp).getTime()});
   }
 
 }
