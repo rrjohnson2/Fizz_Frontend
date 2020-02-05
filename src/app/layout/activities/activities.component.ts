@@ -75,7 +75,7 @@ export class ActivitiesComponent implements OnInit {
     var shareIdeaData:ShareIdeaData={
       title: this.ideaForm.get("title").value,
       description: this.ideaForm.get("description").value,
-      focus: focuses
+      focuses: focuses
     }
     var shareIdeaTicket:Ticket ={
       customer:this.profile.username,
