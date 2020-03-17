@@ -7,7 +7,7 @@ import { Ticket } from 'src/app/interfaces/ticket';
 @Injectable({
   providedIn: 'root'
 })
-export class ActivitiesService {
+export class ShareIdeaService {
 
 
   constructor( private httpClient:HttpClient) { }

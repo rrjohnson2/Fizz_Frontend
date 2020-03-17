@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RealtimeService } from '../services/realtime.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ActivitiesComponent } from './activities/activities.component';
-import { ActivitiesService } from './activities/activities.service';
+import { ShareIdeaService } from './layout-navbar/share-idea/share-idea.service';
 import { LayoutService } from './layout.service';
 import { IdeaCardComponent } from './content/idea-card/idea-card.component';
 import { RetortCardComponent } from './content/retort-card/retort-card.component';
@@ -19,6 +19,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { IdeaCardService } from './content/idea-card/idea-card.service';
 import { RetortCardService } from './content/retort-card/retort-card.service';
 import { DateagoPipe } from './pipe/dateago.pipe';
+import { TrendingComponent } from './trending/trending.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { UpdateProfileComponent } from './layout-navbar/update-profile/update-profile.component';
+import { ShareIdeaComponent } from './layout-navbar/share-idea/share-idea.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -31,7 +35,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     IdeaCardComponent,
     RetortCardComponent,
     MessageCardComponent,
-    DateagoPipe
+    DateagoPipe,
+    TrendingComponent,
+    NotificationsComponent,
+    UpdateProfileComponent,
+    ShareIdeaComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +51,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     SharedModule,
     SocketIoModule.forRoot(config)
   ],
-  providers:[RealtimeService,ActivitiesService,LayoutService,IdeaCardService,RetortCardService]
+  providers:[RealtimeService,ShareIdeaService,LayoutService,IdeaCardService,RetortCardService]
 })
 export class LayoutModule { }
