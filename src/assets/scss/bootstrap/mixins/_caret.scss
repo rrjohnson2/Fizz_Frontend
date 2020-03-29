@@ -33,7 +33,7 @@
       height: 0;
       margin-left: $caret-width * .85;
       vertical-align: $caret-width * .85;
-      content: none; // change for fizz
+      content: none; // change for teek
       @if $direction == down {
         @include caret-down;
       } @else if $direction == up {
