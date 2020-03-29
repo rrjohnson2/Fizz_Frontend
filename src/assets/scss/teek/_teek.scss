@@ -21,7 +21,7 @@ $navbar-height : 3.875rem;
     // max-width: 70% !important;
 }
 .teek_navbar{
-    position: fixed;
+   // position: fixed;
     top: 0;
     width: 100vw;
 }
@@ -44,7 +44,7 @@ $navbar-height : 3.875rem;
     // border-right: solid .25vh $gray-300;
     padding: 0 !important;
     margin-top: 2.5%;
-
+    margin-right: 0;
 }
 .teek_nav_col{
     // border-right: solid .25vh $gray-300;
