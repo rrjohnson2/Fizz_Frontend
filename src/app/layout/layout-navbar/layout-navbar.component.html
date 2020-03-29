@@ -1,9 +1,9 @@
 <nav class=" teek_navbar navbar navbar-expand-lg navbar-dark bg-info mt-4">
-  <div class="container">
-    <div class="logo_header col-6 ">
+  <div class=" teek_container container">
+    <div class="logo_header col-4 teek_nav_col ">
         <a class=" logo_title navbar-brand" href="javascript:void(0)">teek</a>
     </div>
-    <div class="col-5 text-right row ">
+    <div class="col-4 text-right teek_nav_col ">
       <app-update-profile (alert_ticket) = "alert($event)" [profile]="profile"></app-update-profile>
       <app-share-idea (alert_ticket)= "alert($event)" (idea_event) = "idea($event)" [profile]=" profile"></app-share-idea>
     </div>

@@ -12,6 +12,13 @@ $navbar-height : 3.875rem;
 .layout{
      background-color: $gray-100;
      height: 100%;
+     width: 100%;
+}
+.teek_container {
+    // padding: 0 !important ;
+    // margin-left: 10% !important;
+    // margin-right: 10% !important;
+    // max-width: 70% !important;
 }
 .teek_navbar{
     position: fixed;
@@ -25,20 +32,23 @@ $navbar-height : 3.875rem;
 .teek_navbar_login{
     margin-bottom: 5%;
 }
-.teek_container{
-    min-height: 100vh;
-}
 .teek_body{
     margin-top: 2*($navbar-padding-y)+ $navbar-height;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .teek_col{
     // border-right: solid .25vh $gray-300;
     padding: 0 !important;
-    margin-top: 2.5vh;
+    margin-top: 2.5%;
+
+}
+.teek_nav_col{
+    // border-right: solid .25vh $gray-300;
+    padding: 0 !important;
 
 }
 .logo_header, .login_form, .signup_input, .login_root {
@@ -48,16 +58,10 @@ $navbar-height : 3.875rem;
     font-size: 2.5rem !important;
 }
 .idea_modal{
-    height: 30vh !important;
-}
-#notice_icon{
-    height: 5vh;
-    width: 5vh;
+    height: 15% !important;
 }
 
-.notice_card{
-    width: 75vh !important;
-}
+
 .ideas_body{
    overflow-y: scroll;
    height: 85vh;
@@ -79,7 +83,12 @@ $navbar-height : 3.875rem;
     min-height: 25%;
     max-height: 25%;
     
-    margin-bottom: 5%;
+    margin-bottom: 10%;
     overflow-y: scroll;
+}
+
+.live_center{
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
