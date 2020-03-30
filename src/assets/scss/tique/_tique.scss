@@ -1,42 +1,43 @@
 
-$navbar-height : 3.875rem;
+$navbar-height : 5vh;
 ::-webkit-scrollbar {
     width: 0;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: $white; 
+    background: $gray-200; 
   }
    
 .layout{
-     background-color: $gray-100;
+     background-color: $gray-200;
      height: 100%;
      width: 100%;
+     font-size:  1vw!important;
 }
-.teek_nav_container{
+.tique_nav_container{
     padding: 0 !important ;
 }
-.teek_navbar{
+.tique_navbar{
    // position: fixed;
     width: 100vw;
 }
-.teek_navbar, .teek_navbar_login{
+.tique_navbar, .tique_navbar_login{
     margin-top: 0 !important;
 }
 
-.teek_navbar_login{
+.tique_navbar_login{
     margin-bottom: 5%;
 }
 
 
-.teek_col{
+.tique_col{
     // border-right: solid .25vh $gray-300;
     padding: 0 !important;
     margin-top: 2.5%;
     margin-right: 0;
 }
-.teek_nav_col{
+.tique_nav_col{
     // border-right: solid .25vh $gray-300;
     padding: 0 !important;
 
@@ -44,8 +45,9 @@ $navbar-height : 3.875rem;
 .logo_header, .login_form, .signup_input, .login_root {
     padding-left:0 !important; 
 }
+
 .logo_title{
-    font-size: 2.5rem !important;
+    font-size: 2vw !important;
 }
 .idea_modal{
     height: 15% !important;
@@ -56,20 +58,20 @@ $navbar-height : 3.875rem;
    overflow-y: scroll;
    height: 85vh;
 }
-.teek_card
+.tique_card
 {
     margin-bottom: 2.5vh;
 }
 
-.teek_card_header,.teek_card_footer{
+.tique_card_header,.tique_card_footer{
     background-color: $white !important;
     padding-top: 1vh !important;
     padding-bottom: 1vh !important;
 }
-.teek_expansion_panel{
+.tique_expansion_panel{
     box-sizing: inherit !important;
 }
-.live_teek_card{
+.live_tique_card{
     min-height: 25%;
     max-height: 25%;
     
@@ -80,5 +82,18 @@ $navbar-height : 3.875rem;
 .live_center{
     margin-left: 5%;
     margin-right: 5%;
+}
+p, .mat-expansion-panel-content, .mat-expansion-panel-header, .form-control  {
+    font-size: inherit !important;
+}
+.mat-expansion-panel-header{
+    display: contents !important;
+}
+.mat-expansion-panel-header-description{
+    display: block !important;
+    margin-right:  0 !important;
+}
+.mat-expansion-panel{
+    box-shadow: inherit !important;
 }
 
