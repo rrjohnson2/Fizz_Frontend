@@ -83,7 +83,10 @@ $navbar-height : 5vh;
     margin-left: 5%;
     margin-right: 5%;
 }
-p, .mat-expansion-panel-content, .mat-expansion-panel-header, .form-control  {
+h1{
+    font-size: 2vw !important;
+}
+p, .mat-expansion-panel-content, .mat-expansion-panel-header, .form-control,.form-group  {
     font-size: inherit !important;
 }
 .mat-expansion-panel-header{
