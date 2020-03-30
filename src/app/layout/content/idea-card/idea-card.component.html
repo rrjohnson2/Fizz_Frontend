@@ -14,19 +14,17 @@
   </div>
   <div class="card-footer text-muted tique_card_footer ">
     <div class="row">
-      <div class=" col-12  row ">
        <a class="col-4" (click)="vote('UP')" >UVotes:{{upVotes}}</a>
-       <a class="col-4" (click)="showRetort()"> {{idea.retorts.length}} retorts</a>
+       <a class="col-4 text-center" (click)="showRetort()"> {{idea.retorts.length}} retorts</a>
        <a class="col-4 text-right" (click)="vote('DOWN')" >DVotes:{{downVotes}}</a> 
-      </div>
+    </div>
       <div *ngIf="expan">  
         <div   *ngFor="let retort of sortedRetorts">
           <app-retort-card id="retort_{{retort.id}}"  [username]="username" (messageEvent)="messageEvent($event)" [idea_id]="idea.id" [retort]="retort"></app-retort-card>
         </div>
       </div>
-        <form class="col-12"  role="form" [formGroup]="retortForm" (ngSubmit)=submit()>
+        <form class="row"  role="form" [formGroup]="retortForm" (ngSubmit)=submit()>
           <input formControlName="retort" class="form-control" placeholder="Write a retort..." type="text" (focus)="focus1=true" (blur)="focus1=false">
         </form>
-    </div>
   </div>
 </div>
