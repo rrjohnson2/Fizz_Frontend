@@ -84,8 +84,8 @@ export class IdeaCardComponent implements OnInit {
     return this.retort_cards.find((item: RetortCardComponent, index: number, array: RetortCardComponent[]) => 
     item.retort.id ==event.retort_id).showNotice(event);
   }
-  showRetort(data: any) {
-    this.expan = true;
+  showRetort() {
+    this.expan = !this.expan;
   }
 
   vote(vote_type)

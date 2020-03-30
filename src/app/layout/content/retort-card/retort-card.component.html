@@ -1,11 +1,11 @@
 <div class="card tique_card ">
   <div class=" card-body tique_card_body">
-    <div class="card-subtitle mb-2 text-muted text-center"> {{retort.creator.username}} {{retort.timestamp | dateago}}</div>
-    <p class=" card-text text-center">{{retort.content}}</p>
+    <div class="card-subtitle mb-2 text-muted "> {{retort.creator.username}} {{retort.timestamp | dateago}}</div>
+    <p class=" card-text ">{{retort.content}}</p>
   </div>
   <div class="card-footer text-muted tique_card_footer ">
     <div class="row">
-      <mat-expansion-panel [expanded] = "expan" id="message_body" class="col-12 text-center tique_expansion_panel">
+      <mat-expansion-panel [expanded] = "expan" id="message_body" class="col-12  tique_expansion_panel">
         <mat-expansion-panel-header>
           <mat-panel-description>{{retort.messages.length}} comments</mat-panel-description>
         </mat-expansion-panel-header>
